@@ -17,6 +17,7 @@
 		BED55FE3298A192C00015D19 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FE2298A192C00015D19 /* WeatherAppUITests.swift */; };
 		BED55FE5298A192C00015D19 /* WeatherAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FE4298A192C00015D19 /* WeatherAppUITestsLaunchTests.swift */; };
 		BED55FF2298A547B00015D19 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FF1298A547B00015D19 /* NetworkManager.swift */; };
+		BED55FF4298A626300015D19 /* ParseJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FF3298A626300015D19 /* ParseJson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		BED55FE2298A192C00015D19 /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		BED55FE4298A192C00015D19 /* WeatherAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BED55FF1298A547B00015D19 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BED55FF3298A626300015D19 /* ParseJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseJson.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				BED55FC3298A192B00015D19 /* SceneDelegate.swift */,
 				BED55FC5298A192B00015D19 /* ViewController.swift */,
 				BED55FF1298A547B00015D19 /* NetworkManager.swift */,
+				BED55FF3298A626300015D19 /* ParseJson.swift */,
 				BED55FC7298A192B00015D19 /* Main.storyboard */,
 				BED55FCA298A192C00015D19 /* Assets.xcassets */,
 				BED55FCC298A192C00015D19 /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BED55FF4298A626300015D19 /* ParseJson.swift in Sources */,
 				BED55FF2298A547B00015D19 /* NetworkManager.swift in Sources */,
 				BED55FC6298A192B00015D19 /* ViewController.swift in Sources */,
 				BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */,
