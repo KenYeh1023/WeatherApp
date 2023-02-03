@@ -9,6 +9,11 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gilroy-Black.ttf">
+            <string>Gilroy-Black</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -29,7 +34,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="UkN-rM-wv1"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -39,7 +44,7 @@
                                             <constraint firstAttribute="width" constant="115" id="aAk-xQ-gqB"/>
                                             <constraint firstAttribute="height" constant="60" id="gRI-vV-Lg9"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                                        <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="50"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -87,7 +92,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="9pG-16-IST"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -128,7 +133,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="1q5-Du-d0i"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -165,11 +170,11 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsf-Zf-Wdb">
-                                                <rect key="frame" x="8" y="50" width="68.333333333333329" height="20"/>
+                                                <rect key="frame" x="8" y="50" width="71.333333333333329" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="vl9-C5-F7c"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
