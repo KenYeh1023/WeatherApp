@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BEA42B55298CE9F5009127A4 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA42B54298CE9F5009127A4 /* UIColor.swift */; };
 		BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC1298A192B00015D19 /* AppDelegate.swift */; };
 		BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC3298A192B00015D19 /* SceneDelegate.swift */; };
 		BED55FC6298A192B00015D19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC5298A192B00015D19 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BEA42B54298CE9F5009127A4 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		BED55FBE298A192B00015D19 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED55FC1298A192B00015D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED55FC3298A192B00015D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,9 +82,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BEA42B53298CE9D8009127A4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BEA42B54298CE9F5009127A4 /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		BED55FB5298A192B00015D19 = {
 			isa = PBXGroup;
 			children = (
+				BEA42B53298CE9D8009127A4 /* Extensions */,
 				BED55FC0298A192B00015D19 /* WeatherApp */,
 				BED55FD7298A192C00015D19 /* WeatherAppTests */,
 				BED55FE1298A192C00015D19 /* WeatherAppUITests */,
@@ -265,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BED55FF4298A626300015D19 /* ParseJson.swift in Sources */,
+				BEA42B55298CE9F5009127A4 /* UIColor.swift in Sources */,
 				BED55FF2298A547B00015D19 /* NetworkManager.swift in Sources */,
 				BED55FC6298A192B00015D19 /* ViewController.swift in Sources */,
 				BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */,
