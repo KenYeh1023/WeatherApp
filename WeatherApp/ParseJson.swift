@@ -3,6 +3,7 @@
 struct DataList: Codable {
     var weather: [Weather]
     var main: Main
+    var wind: Wind
 }
 
 struct Weather: Codable {
@@ -16,4 +17,8 @@ struct Main: Codable {
     var temp_min: Float
     var temp_max: Float
     var humidity: Int
+}
+
+struct Wind: Codable {
+    var speed: Float
 }
