@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BEA42B55298CE9F5009127A4 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA42B54298CE9F5009127A4 /* UIColor.swift */; };
 		BEB82B1F298CFB1700AC5A2F /* Gilroy-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEB82B1E298CFB1700AC5A2F /* Gilroy-Black.ttf */; };
+		BEB82B21298E63E900AC5A2F /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B20298E63E900AC5A2F /* WeatherCollectionViewCell.swift */; };
 		BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC1298A192B00015D19 /* AppDelegate.swift */; };
 		BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC3298A192B00015D19 /* SceneDelegate.swift */; };
 		BED55FC6298A192B00015D19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC5298A192B00015D19 /* ViewController.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		BEA42B54298CE9F5009127A4 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		BEB82B1E298CFB1700AC5A2F /* Gilroy-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Black.ttf"; sourceTree = "<group>"; };
+		BEB82B20298E63E900AC5A2F /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		BED55FBE298A192B00015D19 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED55FC1298A192B00015D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED55FC3298A192B00015D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				BED55FCA298A192C00015D19 /* Assets.xcassets */,
 				BED55FCC298A192C00015D19 /* LaunchScreen.storyboard */,
 				BED55FCF298A192C00015D19 /* Info.plist */,
+				BEB82B20298E63E900AC5A2F /* WeatherCollectionViewCell.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				BED55FC6298A192B00015D19 /* ViewController.swift in Sources */,
 				BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */,
 				BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */,
+				BEB82B21298E63E900AC5A2F /* WeatherCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
