@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var weatherCollectionView: UICollectionView!
     
     @IBOutlet weak var temperatureView: UIView!
     
@@ -32,15 +33,18 @@ class ViewController: UIViewController {
     }
     
     func setBackground() {
-        temperatureView.layer.cornerRadius = 10
+        
+        weatherCollectionView.backgroundColor = UIColor.init(hexString: "#222A36")
+        weatherCollectionView.layer.cornerRadius = 30
+        temperatureView.layer.cornerRadius = 30
         windView.backgroundColor = UIColor.init(hexString: "#222A36")
-        windView.layer.cornerRadius = 10
+        windView.layer.cornerRadius = 30
         
         pressureView.backgroundColor = UIColor.init(hexString: "#222A36")
-        pressureView.layer.cornerRadius = 10
+        pressureView.layer.cornerRadius = 30
         
         humidityView.backgroundColor = UIColor.init(hexString: "#222A36")
-        humidityView.layer.cornerRadius = 10
+        humidityView.layer.cornerRadius = 30
     }
     
     func parseJson(data: Data) -> DataList? {
@@ -62,9 +66,9 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(WeatherCollectionViewCell.self)", for: indexPath) as! WeatherCollectionViewCell
         cell.weatherImage.image = UIImage(named: "humidity")
+        cell.timeLabel.text = "3 AM"
+        cell.temperatureLabel.text = "9°C"
         
         return cell
     }
-    
-    
 }
