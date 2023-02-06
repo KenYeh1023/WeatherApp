@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -34,7 +35,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="UkN-rM-wv1"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -54,10 +55,20 @@
                                             <constraint firstAttribute="width" constant="115" id="ZaG-92-TDT"/>
                                             <constraint firstAttribute="height" constant="20" id="sAJ-cT-0lA"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRt-JN-Hlm">
+                                        <rect key="frame" x="279" y="441" width="114" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Taipei  ">
+                                            <imageReference key="image" image="arrow.up.right" catalog="system" symbolScale="medium"/>
+                                            <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
@@ -227,32 +238,32 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CTX-i8-oce">
-                                                    <rect key="frame" x="15" y="35" width="50" height="50"/>
+                                                    <rect key="frame" x="20" y="40" width="40" height="40"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="dyo-Fu-C4R"/>
-                                                        <constraint firstAttribute="width" constant="50" id="ufd-qt-gE1"/>
+                                                        <constraint firstAttribute="height" constant="40" id="dyo-Fu-C4R"/>
+                                                        <constraint firstAttribute="width" constant="40" id="ufd-qt-gE1"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogd-5G-weO">
-                                                    <rect key="frame" x="2" y="13" width="76" height="20"/>
+                                                    <rect key="frame" x="2" y="18" width="76" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="09j-nW-8LW"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V44-KM-VaU">
-                                                    <rect key="frame" x="2" y="88" width="76" height="18"/>
-                                                    <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="18"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="2" y="85" width="76" height="15"/>
+                                                    <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="V44-KM-VaU" secondAttribute="trailing" constant="2" id="1g0-M9-k24"/>
                                                 <constraint firstItem="ogd-5G-weO" firstAttribute="leading" secondItem="b3e-vF-OoW" secondAttribute="leading" constant="2" id="8DX-Fv-PhN"/>
-                                                <constraint firstItem="V44-KM-VaU" firstAttribute="top" secondItem="CTX-i8-oce" secondAttribute="bottom" constant="3" id="Hkk-CQ-wuj"/>
+                                                <constraint firstItem="V44-KM-VaU" firstAttribute="top" secondItem="CTX-i8-oce" secondAttribute="bottom" constant="5" id="Hkk-CQ-wuj"/>
                                                 <constraint firstAttribute="trailing" secondItem="ogd-5G-weO" secondAttribute="trailing" constant="2" id="JJO-VA-tar"/>
                                                 <constraint firstItem="CTX-i8-oce" firstAttribute="centerX" secondItem="b3e-vF-OoW" secondAttribute="centerX" id="YN8-li-f5B"/>
                                                 <constraint firstItem="CTX-i8-oce" firstAttribute="top" secondItem="ogd-5G-weO" secondAttribute="bottom" constant="2" id="edH-CH-fJs"/>
@@ -289,10 +300,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="humidityImageView" destination="0OT-v6-5Cg" id="bAe-sd-oBP"/>
                         <outlet property="humidityView" destination="iOJ-O6-cPZ" id="paW-DB-jzf"/>
+                        <outlet property="pressureImageView" destination="tbS-3g-Tov" id="m9i-F3-hAg"/>
                         <outlet property="pressureView" destination="QHT-Fu-hja" id="NRe-ok-faI"/>
                         <outlet property="temperatureView" destination="6gm-gc-c0j" id="FVi-cI-h0C"/>
                         <outlet property="weatherCollectionView" destination="Pto-0c-WVX" id="PdI-q1-hV0"/>
+                        <outlet property="windImageView" destination="Rch-he-oLP" id="wFY-aG-zFK"/>
                         <outlet property="windView" destination="vBN-1I-85M" id="ESY-GN-X27"/>
                     </connections>
                 </viewController>
@@ -302,6 +316,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.up.right" catalog="system" width="128" height="112"/>
         <image name="background" width="459" height="459"/>
         <image name="humidity" width="512" height="512"/>
         <image name="wind" width="512" height="512"/>

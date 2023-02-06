@@ -10,14 +10,18 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var weatherCollectionView: UICollectionView!
-    
     @IBOutlet weak var temperatureView: UIView!
-    
     @IBOutlet weak var windView: UIView!
-    
     @IBOutlet weak var pressureView: UIView!
-    
     @IBOutlet weak var humidityView: UIView!
+    
+    
+    @IBOutlet weak var windImageView: UIImageView!
+    
+    
+    @IBOutlet weak var pressureImageView: UIImageView!
+    
+    @IBOutlet weak var humidityImageView: UIImageView!
     
     let networkManager: NetworkManager = NetworkManager()
     let params: String = Api.currentWeather.path + "?q=london&appid=9e8de8930618664ac4e71687dc3e86d8&units=metric"
@@ -45,6 +49,23 @@ class ViewController: UIViewController {
         
         humidityView.backgroundColor = UIColor.init(hexString: "#222A36")
         humidityView.layer.cornerRadius = 30
+        
+        setImageView()
+        
+    }
+    
+    func setImageView() {
+        let windImage = UIImage(named: "wind")?.withRenderingMode(.alwaysTemplate)
+        windImageView.image = windImage
+        windImageView.tintColor = .white
+        
+        let pressureImage = UIImage(named: "pressure")?.withRenderingMode(.alwaysTemplate)
+        pressureImageView.image = pressureImage
+        pressureImageView.tintColor = .white
+        
+        let humidityImage = UIImage(named: "humidity")?.withRenderingMode(.alwaysTemplate)
+        humidityImageView.image = humidityImage
+        humidityImageView.tintColor = .white
     }
     
     func parseJson(data: Data) -> DataList? {
@@ -65,7 +86,7 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(WeatherCollectionViewCell.self)", for: indexPath) as! WeatherCollectionViewCell
-        cell.weatherImage.image = UIImage(named: "humidity")
+        cell.weatherImage.image = UIImage(named: "cloudy")
         cell.timeLabel.text = "3 AM"
         cell.temperatureLabel.text = "9°C"
         
