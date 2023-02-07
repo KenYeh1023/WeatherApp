@@ -16,6 +16,7 @@ struct Main: Codable {
     var feels_like: Float
     var temp_min: Float
     var temp_max: Float
+    var pressure: Int
     var humidity: Int
 }
 

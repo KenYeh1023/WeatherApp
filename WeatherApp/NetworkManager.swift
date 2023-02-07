@@ -10,6 +10,7 @@ import Foundation
 enum Api: String {
     
     case currentWeather = "/weather"
+    case forecastWeather = "/forecast"
     
     private var baseUrl: String { "https://api.openweathermap.org/data/2.5" }
     
@@ -35,6 +36,10 @@ class NetworkManager {
             }
         }
         task.resume()
+    }
+    
+    func getUrlAddress(searchType: Api, cityId: String) -> String {
+        return searchType.path + "?" + "id=\(cityId)&appid=9e8de8930618664ac4e71687dc3e86d8&units=metric"
     }
     
 }

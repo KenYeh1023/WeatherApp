@@ -7,6 +7,12 @@
 
 import UIKit
 
+struct WeatherForecast {
+    var time: String
+    var weatherImage: UIImage
+    var temperature: String
+}
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var weatherCollectionView: UICollectionView!
@@ -16,20 +22,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var humidityView: UIView!
     
     
+    @IBAction func locationButtonPressed(_ sender: UIButton) {
+        presentLoadingView()
+    }
+    
     @IBOutlet weak var windImageView: UIImageView!
-    
-    
     @IBOutlet weak var pressureImageView: UIImageView!
-    
     @IBOutlet weak var humidityImageView: UIImageView!
     
     let networkManager: NetworkManager = NetworkManager()
-    let params: String = Api.currentWeather.path + "?q=london&appid=9e8de8930618664ac4e71687dc3e86d8&units=metric"
+    
+    var weatherForecastArray: [WeatherForecast] = [WeatherForecast(time: "NOW", weatherImage: UIImage(named: "cloudy")!, temperature: "2°C"), WeatherForecast(time: "1 AM", weatherImage: UIImage(named: "cloudy")!, temperature: "5°C"), WeatherForecast(time: "2 AM", weatherImage: UIImage(named: "windy")!, temperature: "8°C"), WeatherForecast(time: "3 AM", weatherImage: UIImage(named: "storm")!, temperature: "8°C"), WeatherForecast(time: "4 AM", weatherImage: UIImage(named: "storm")!, temperature: "15°C")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
-//        let url: URL = URL(string: params)!
+//        let url: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: "1668341"))!
 //        self.view.backgroundColor = UIColor.init(hexString: "#222A36")
 //        networkManager.request(url: url) { data in
 //            print(self.parseJson(data: data!))
@@ -86,9 +94,9 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(WeatherCollectionViewCell.self)", for: indexPath) as! WeatherCollectionViewCell
-        cell.weatherImage.image = UIImage(named: "cloudy")
-        cell.timeLabel.text = "3 AM"
-        cell.temperatureLabel.text = "9°C"
+        cell.timeLabel.text = weatherForecastArray[indexPath.row].time
+        cell.weatherImage.image = weatherForecastArray[indexPath.row].weatherImage
+        cell.temperatureLabel.text = weatherForecastArray[indexPath.row].temperature
         
         return cell
     }
