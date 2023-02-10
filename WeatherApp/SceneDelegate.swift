@@ -32,9 +32,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         networkManager.request(url: currentWeatherUrl) { data in
             guard data != nil else { return }
-            currentWeatherDataList = self.currentWeather(data: data!)
+            currentWeatherDataList = ParseJson.currentWeather(data: data!)
             self.networkManager.request(url: forecastWeatherUrl) { data in
-                forecastWeatherDataList = self.forecastWeather(data: data!)
+                forecastWeatherDataList = ParseJson.forecastWeather(data: data!)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
                 viewController.weatherCurrentArray = currentWeatherDataList
@@ -70,26 +70,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
-    }
-    
-    func currentWeather(data: Data) -> CurrentWeatherDataList? {
-        do {
-            let result = try JSONDecoder().decode(CurrentWeatherDataList.self, from: data)
-            return result
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-    
-    func forecastWeather(data: Data) -> ForecastWeatherDataList? {
-        do {
-            let result = try JSONDecoder().decode(ForecastWeatherDataList.self, from: data)
-            return result
-        } catch {
-            print(error)
-            return nil
-        }
     }
 }
 

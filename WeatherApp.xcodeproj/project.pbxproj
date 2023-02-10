@@ -15,6 +15,7 @@
 		BEB82B28299203DB00AC5A2F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BEB82B27299203DB00AC5A2F /* Lottie */; };
 		BEB82B2A299206EC00AC5A2F /* 99274-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB82B29299206EC00AC5A2F /* 99274-loading.json */; };
 		BEB82B2F2995F49600AC5A2F /* ForecastWeatherDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B2E2995F49600AC5A2F /* ForecastWeatherDataList.swift */; };
+		BEB82B312995FA2F00AC5A2F /* ParseJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B302995FA2F00AC5A2F /* ParseJson.swift */; };
 		BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC1298A192B00015D19 /* AppDelegate.swift */; };
 		BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC3298A192B00015D19 /* SceneDelegate.swift */; };
 		BED55FC6298A192B00015D19 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC5298A192B00015D19 /* MainViewController.swift */; };
@@ -53,6 +54,7 @@
 		BEB82B242991FD4400AC5A2F /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		BEB82B29299206EC00AC5A2F /* 99274-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "99274-loading.json"; sourceTree = "<group>"; };
 		BEB82B2E2995F49600AC5A2F /* ForecastWeatherDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherDataList.swift; sourceTree = "<group>"; };
+		BEB82B302995FA2F00AC5A2F /* ParseJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseJson.swift; sourceTree = "<group>"; };
 		BED55FBE298A192B00015D19 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED55FC1298A192B00015D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED55FC3298A192B00015D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,11 +148,12 @@
 				BED55FC5298A192B00015D19 /* MainViewController.swift */,
 				BEB82B222991E65800AC5A2F /* LoadingViewController.swift */,
 				BED55FF1298A547B00015D19 /* NetworkManager.swift */,
+				BEB82B302995FA2F00AC5A2F /* ParseJson.swift */,
+				BEB82B20298E63E900AC5A2F /* WeatherCollectionViewCell.swift */,
 				BED55FC7298A192B00015D19 /* Main.storyboard */,
 				BED55FCA298A192C00015D19 /* Assets.xcassets */,
 				BED55FCC298A192C00015D19 /* LaunchScreen.storyboard */,
 				BED55FCF298A192C00015D19 /* Info.plist */,
-				BEB82B20298E63E900AC5A2F /* WeatherCollectionViewCell.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				BED55FC6298A192B00015D19 /* MainViewController.swift in Sources */,
 				BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */,
 				BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */,
+				BEB82B312995FA2F00AC5A2F /* ParseJson.swift in Sources */,
 				BEB82B21298E63E900AC5A2F /* WeatherCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
