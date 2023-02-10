@@ -17,7 +17,7 @@
 		BEB82B2F2995F49600AC5A2F /* ForecastWeatherDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B2E2995F49600AC5A2F /* ForecastWeatherDataList.swift */; };
 		BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC1298A192B00015D19 /* AppDelegate.swift */; };
 		BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC3298A192B00015D19 /* SceneDelegate.swift */; };
-		BED55FC6298A192B00015D19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC5298A192B00015D19 /* ViewController.swift */; };
+		BED55FC6298A192B00015D19 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC5298A192B00015D19 /* MainViewController.swift */; };
 		BED55FC9298A192B00015D19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED55FC7298A192B00015D19 /* Main.storyboard */; };
 		BED55FCB298A192C00015D19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BED55FCA298A192C00015D19 /* Assets.xcassets */; };
 		BED55FCE298A192C00015D19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BED55FCC298A192C00015D19 /* LaunchScreen.storyboard */; };
@@ -56,7 +56,7 @@
 		BED55FBE298A192B00015D19 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED55FC1298A192B00015D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED55FC3298A192B00015D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BED55FC5298A192B00015D19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BED55FC5298A192B00015D19 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BED55FC8298A192B00015D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BED55FCA298A192C00015D19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BED55FCD298A192C00015D19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				BEB82B29299206EC00AC5A2F /* 99274-loading.json */,
 				BED55FC1298A192B00015D19 /* AppDelegate.swift */,
 				BED55FC3298A192B00015D19 /* SceneDelegate.swift */,
-				BED55FC5298A192B00015D19 /* ViewController.swift */,
+				BED55FC5298A192B00015D19 /* MainViewController.swift */,
 				BEB82B222991E65800AC5A2F /* LoadingViewController.swift */,
 				BED55FF1298A547B00015D19 /* NetworkManager.swift */,
 				BED55FC7298A192B00015D19 /* Main.storyboard */,
@@ -317,7 +317,7 @@
 				BED55FF2298A547B00015D19 /* NetworkManager.swift in Sources */,
 				BEB82B232991E65800AC5A2F /* LoadingViewController.swift in Sources */,
 				BEB82B2F2995F49600AC5A2F /* ForecastWeatherDataList.swift in Sources */,
-				BED55FC6298A192B00015D19 /* ViewController.swift in Sources */,
+				BED55FC6298A192B00015D19 /* MainViewController.swift in Sources */,
 				BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */,
 				BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */,
 				BEB82B21298E63E900AC5A2F /* WeatherCollectionViewCell.swift in Sources */,

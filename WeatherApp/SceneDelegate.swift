@@ -24,15 +24,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windScene: UIWindowScene = (scene as? UIWindowScene) else { return }
         
+        var currentWeatherDataList: CurrentWeatherDataList?
+        var forecastWeatherDataList: ForecastWeatherDataList?
+        
         let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: "1668341"))!
-//        let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: "1668341"))!
+        let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: "1668341"))!
+        
         networkManager.request(url: currentWeatherUrl) { data in
             guard data != nil else { return }
-            let data = self.parseJson(data: data!)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-            viewController.weatherCurrentArray = data
-            self.enterInitialView(windScene: windScene, initView: viewController)
+            currentWeatherDataList = self.currentWeather(data: data!)
+            self.networkManager.request(url: forecastWeatherUrl) { data in
+                forecastWeatherDataList = self.forecastWeather(data: data!)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+                viewController.weatherCurrentArray = currentWeatherDataList
+                viewController.weatherForecastArray2 = forecastWeatherDataList
+                self.enterInitialView(windScene: windScene, initView: viewController)
+            }
         }
     }
 
@@ -64,9 +72,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    func parseJson(data: Data) -> CurrentWeatherDataList? {
+    func currentWeather(data: Data) -> CurrentWeatherDataList? {
         do {
             let result = try JSONDecoder().decode(CurrentWeatherDataList.self, from: data)
+            return result
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    func forecastWeather(data: Data) -> ForecastWeatherDataList? {
+        do {
+            let result = try JSONDecoder().decode(ForecastWeatherDataList.self, from: data)
             return result
         } catch {
             print(error)
