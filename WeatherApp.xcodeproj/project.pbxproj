@@ -116,9 +116,27 @@
 			path = Codable;
 			sourceTree = "<group>";
 		};
+		BEB82B322995FB3700AC5A2F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BEB82B1E298CFB1700AC5A2F /* Gilroy-Black.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		BEB82B332995FB4700AC5A2F /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				BEB82B29299206EC00AC5A2F /* 99274-loading.json */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		BED55FB5298A192B00015D19 = {
 			isa = PBXGroup;
 			children = (
+				BEB82B322995FB3700AC5A2F /* Fonts */,
+				BEB82B332995FB4700AC5A2F /* Animations */,
 				BEB82B2D2995F46000AC5A2F /* Codable */,
 				BEA42B53298CE9D8009127A4 /* Extensions */,
 				BED55FC0298A192B00015D19 /* WeatherApp */,
@@ -141,8 +159,6 @@
 		BED55FC0298A192B00015D19 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				BEB82B1E298CFB1700AC5A2F /* Gilroy-Black.ttf */,
-				BEB82B29299206EC00AC5A2F /* 99274-loading.json */,
 				BED55FC1298A192B00015D19 /* AppDelegate.swift */,
 				BED55FC3298A192B00015D19 /* SceneDelegate.swift */,
 				BED55FC5298A192B00015D19 /* MainViewController.swift */,
