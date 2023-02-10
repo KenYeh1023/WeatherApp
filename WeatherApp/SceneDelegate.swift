@@ -64,9 +64,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    func parseJson(data: Data) -> DataList? {
+    func parseJson(data: Data) -> CurrentWeatherDataList? {
         do {
-            let result = try JSONDecoder().decode(DataList.self, from: data)
+            let result = try JSONDecoder().decode(CurrentWeatherDataList.self, from: data)
             return result
         } catch {
             print(error)

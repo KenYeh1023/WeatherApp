@@ -39,7 +39,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pressureImageView: UIImageView!
     @IBOutlet weak var humidityImageView: UIImageView!
     
-    var weatherCurrentArray: DataList?
+    var weatherCurrentArray: CurrentWeatherDataList?
     
     var weatherForecastArray: [WeatherForecast] = [WeatherForecast(time: "NOW", weatherImage: UIImage(named: "cloudy")!, temperature: "2°C"), WeatherForecast(time: "1 AM", weatherImage: UIImage(named: "cloudy")!, temperature: "5°C"), WeatherForecast(time: "2 AM", weatherImage: UIImage(named: "windy")!, temperature: "8°C"), WeatherForecast(time: "3 AM", weatherImage: UIImage(named: "storm")!, temperature: "8°C"), WeatherForecast(time: "4 AM", weatherImage: UIImage(named: "storm")!, temperature: "15°C")]
 

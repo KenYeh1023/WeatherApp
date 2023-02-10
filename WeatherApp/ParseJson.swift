@@ -1,6 +1,6 @@
 
 
-struct DataList: Codable {
+struct CurrentWeatherDataList: Codable {
     var weather: [Weather]
     var main: Main
     var wind: Wind
