@@ -13,7 +13,16 @@ struct WeatherForecast {
     var temperature: String
 }
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
+    
+    
+    @IBOutlet weak var currentTemperatureLabel: UILabel!
+    @IBOutlet weak var realFeelTemperatureLabel: UILabel!
+    
+    
+    @IBOutlet weak var windLabel: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
     
     @IBOutlet weak var weatherCollectionView: UICollectionView!
     @IBOutlet weak var temperatureView: UIView!
@@ -30,21 +39,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var pressureImageView: UIImageView!
     @IBOutlet weak var humidityImageView: UIImageView!
     
-    let networkManager: NetworkManager = NetworkManager()
+    var weatherCurrentArray: DataList?
     
     var weatherForecastArray: [WeatherForecast] = [WeatherForecast(time: "NOW", weatherImage: UIImage(named: "cloudy")!, temperature: "2°C"), WeatherForecast(time: "1 AM", weatherImage: UIImage(named: "cloudy")!, temperature: "5°C"), WeatherForecast(time: "2 AM", weatherImage: UIImage(named: "windy")!, temperature: "8°C"), WeatherForecast(time: "3 AM", weatherImage: UIImage(named: "storm")!, temperature: "8°C"), WeatherForecast(time: "4 AM", weatherImage: UIImage(named: "storm")!, temperature: "15°C")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
-//        let url: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: "1668341"))!
-//        self.view.backgroundColor = UIColor.init(hexString: "#222A36")
-//        networkManager.request(url: url) { data in
-//            print(self.parseJson(data: data!))
-//        }
     }
     
     func setBackground() {
+        
+        currentTemperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
+        realFeelTemperatureLabel.text = "Real Feel \(Int(weatherCurrentArray!.main.feels_like))°C"
+        windLabel.text = "\(weatherCurrentArray!.wind.speed) m/s"
+        pressureLabel.text = "\(weatherCurrentArray!.main.pressure) MB"
+        humidityLabel.text = "\(weatherCurrentArray!.main.humidity) %"
         
         weatherCollectionView.backgroundColor = UIColor.init(hexString: "#222A36")
         weatherCollectionView.layer.cornerRadius = 30
@@ -75,19 +85,9 @@ class ViewController: UIViewController {
         humidityImageView.image = humidityImage
         humidityImageView.tintColor = .white
     }
-    
-    func parseJson(data: Data) -> DataList? {
-        do {
-            let result = try JSONDecoder().decode(DataList.self, from: data)
-            return result
-        } catch {
-            print(error)
-            return nil
-        }
-    }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }

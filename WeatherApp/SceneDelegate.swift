@@ -10,13 +10,30 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let networkManager = NetworkManager()
+    
+    private func enterInitialView(windScene: UIWindowScene, initView: UIViewController) {
+        let window = UIWindow(windowScene: windScene)
+        self.window = window
+        self.window?.rootViewController = initView
+        self.window?.makeKeyAndVisible()
+    }
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        guard let windScene: UIWindowScene = (scene as? UIWindowScene) else { return }
+        
+        let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: "1668341"))!
+//        let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: "1668341"))!
+        networkManager.request(url: currentWeatherUrl) { data in
+            guard data != nil else { return }
+            let data = self.parseJson(data: data!)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+            viewController.weatherCurrentArray = data
+            self.enterInitialView(windScene: windScene, initView: viewController)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -46,7 +63,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
+    
+    func parseJson(data: Data) -> DataList? {
+        do {
+            let result = try JSONDecoder().decode(DataList.self, from: data)
+            return result
+        } catch {
+            print(error)
+            return nil
+        }
+    }
 }
 

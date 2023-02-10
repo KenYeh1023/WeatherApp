@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MainViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -303,13 +303,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentTemperatureLabel" destination="7Uc-d6-h3s" id="MSt-Mk-Sx3"/>
                         <outlet property="humidityImageView" destination="0OT-v6-5Cg" id="bAe-sd-oBP"/>
+                        <outlet property="humidityLabel" destination="wBH-e0-WEc" id="wJ5-7X-ZH0"/>
                         <outlet property="humidityView" destination="iOJ-O6-cPZ" id="paW-DB-jzf"/>
                         <outlet property="pressureImageView" destination="tbS-3g-Tov" id="m9i-F3-hAg"/>
+                        <outlet property="pressureLabel" destination="qQm-oC-2NT" id="ER5-4r-wha"/>
                         <outlet property="pressureView" destination="QHT-Fu-hja" id="NRe-ok-faI"/>
+                        <outlet property="realFeelTemperatureLabel" destination="DlJ-BQ-G8N" id="NGa-AU-cyI"/>
                         <outlet property="temperatureView" destination="6gm-gc-c0j" id="FVi-cI-h0C"/>
                         <outlet property="weatherCollectionView" destination="Pto-0c-WVX" id="PdI-q1-hV0"/>
                         <outlet property="windImageView" destination="Rch-he-oLP" id="wFY-aG-zFK"/>
+                        <outlet property="windLabel" destination="UQz-Dv-vd7" id="YnX-bU-VCC"/>
                         <outlet property="windView" destination="vBN-1I-85M" id="ESY-GN-X27"/>
                     </connections>
                 </viewController>
