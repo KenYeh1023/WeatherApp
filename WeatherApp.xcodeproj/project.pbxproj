@@ -14,6 +14,7 @@
 		BEB82B252991FD4400AC5A2F /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B242991FD4400AC5A2F /* UIViewController.swift */; };
 		BEB82B28299203DB00AC5A2F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BEB82B27299203DB00AC5A2F /* Lottie */; };
 		BEB82B2A299206EC00AC5A2F /* 99274-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB82B29299206EC00AC5A2F /* 99274-loading.json */; };
+		BEB82B2F2995F49600AC5A2F /* ForecastWeatherDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B2E2995F49600AC5A2F /* ForecastWeatherDataList.swift */; };
 		BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC1298A192B00015D19 /* AppDelegate.swift */; };
 		BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC3298A192B00015D19 /* SceneDelegate.swift */; };
 		BED55FC6298A192B00015D19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC5298A192B00015D19 /* ViewController.swift */; };
@@ -24,7 +25,7 @@
 		BED55FE3298A192C00015D19 /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FE2298A192C00015D19 /* WeatherAppUITests.swift */; };
 		BED55FE5298A192C00015D19 /* WeatherAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FE4298A192C00015D19 /* WeatherAppUITestsLaunchTests.swift */; };
 		BED55FF2298A547B00015D19 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FF1298A547B00015D19 /* NetworkManager.swift */; };
-		BED55FF4298A626300015D19 /* ParseJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FF3298A626300015D19 /* ParseJson.swift */; };
+		BED55FF4298A626300015D19 /* CurrentWeatherDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FF3298A626300015D19 /* CurrentWeatherDataList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		BEB82B222991E65800AC5A2F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		BEB82B242991FD4400AC5A2F /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		BEB82B29299206EC00AC5A2F /* 99274-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "99274-loading.json"; sourceTree = "<group>"; };
+		BEB82B2E2995F49600AC5A2F /* ForecastWeatherDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherDataList.swift; sourceTree = "<group>"; };
 		BED55FBE298A192B00015D19 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED55FC1298A192B00015D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED55FC3298A192B00015D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +67,7 @@
 		BED55FE2298A192C00015D19 /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		BED55FE4298A192C00015D19 /* WeatherAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BED55FF1298A547B00015D19 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		BED55FF3298A626300015D19 /* ParseJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseJson.swift; sourceTree = "<group>"; };
+		BED55FF3298A626300015D19 /* CurrentWeatherDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherDataList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +105,19 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		BEB82B2D2995F46000AC5A2F /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				BED55FF3298A626300015D19 /* CurrentWeatherDataList.swift */,
+				BEB82B2E2995F49600AC5A2F /* ForecastWeatherDataList.swift */,
+			);
+			path = Codable;
+			sourceTree = "<group>";
+		};
 		BED55FB5298A192B00015D19 = {
 			isa = PBXGroup;
 			children = (
+				BEB82B2D2995F46000AC5A2F /* Codable */,
 				BEA42B53298CE9D8009127A4 /* Extensions */,
 				BED55FC0298A192B00015D19 /* WeatherApp */,
 				BED55FD7298A192C00015D19 /* WeatherAppTests */,
@@ -134,7 +146,6 @@
 				BED55FC5298A192B00015D19 /* ViewController.swift */,
 				BEB82B222991E65800AC5A2F /* LoadingViewController.swift */,
 				BED55FF1298A547B00015D19 /* NetworkManager.swift */,
-				BED55FF3298A626300015D19 /* ParseJson.swift */,
 				BED55FC7298A192B00015D19 /* Main.storyboard */,
 				BED55FCA298A192C00015D19 /* Assets.xcassets */,
 				BED55FCC298A192C00015D19 /* LaunchScreen.storyboard */,
@@ -300,11 +311,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BED55FF4298A626300015D19 /* ParseJson.swift in Sources */,
+				BED55FF4298A626300015D19 /* CurrentWeatherDataList.swift in Sources */,
 				BEA42B55298CE9F5009127A4 /* UIColor.swift in Sources */,
 				BEB82B252991FD4400AC5A2F /* UIViewController.swift in Sources */,
 				BED55FF2298A547B00015D19 /* NetworkManager.swift in Sources */,
 				BEB82B232991E65800AC5A2F /* LoadingViewController.swift in Sources */,
+				BEB82B2F2995F49600AC5A2F /* ForecastWeatherDataList.swift in Sources */,
 				BED55FC6298A192B00015D19 /* ViewController.swift in Sources */,
 				BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */,
 				BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */,

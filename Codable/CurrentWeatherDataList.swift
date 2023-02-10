@@ -1,5 +1,4 @@
 
-
 struct CurrentWeatherDataList: Codable {
     var weather: [Weather]
     var main: Main
