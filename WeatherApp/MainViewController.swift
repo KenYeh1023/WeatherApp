@@ -51,6 +51,19 @@ class MainViewController: UIViewController {
         setBackground()
     }
     
+    func presentLoadingView() {
+        let loadingViewController = storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as? LoadingViewController
+        guard loadingViewController != nil else { return }
+        loadingViewController?.modalTransitionStyle = .crossDissolve
+        loadingViewController?.modalPresentationStyle = .overCurrentContext
+        loadingViewController?.completionHandler = { data in
+            self.weatherCurrentArray = data.currentWeatherDataList
+            self.weatherForecastArray = data.forecastWeatherDataList
+            self.setBackground()
+        }
+        present(loadingViewController!, animated: true)
+    }
+    
     func setBackground() {
         currentDateLabel.text = dateStringTransfer(timeStamp: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
         

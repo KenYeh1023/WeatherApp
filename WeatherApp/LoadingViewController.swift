@@ -8,49 +8,50 @@
 import UIKit
 import Lottie
 
+struct WeatherInformationPack {
+    var currentWeatherDataList: CurrentWeatherDataList
+    var forecastWeatherDataList: ForecastWeatherDataList
+}
+
 class LoadingViewController: UIViewController {
     
     private var animationView: LottieAnimationView?
+    
+    private var networkManager = NetworkManager()
+    
+    var completionHandler: ((WeatherInformationPack)->())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 2. Start LottieAnimationView with animation name (without extension)
-          
-          animationView = .init(name: "99274-loading")
-          
-          animationView!.frame = view.bounds
-          
-          // 3. Set animation content mode
-          
-          animationView!.contentMode = .scaleAspectFit
-          
-          // 4. Set animation loop mode
-          
-          animationView!.loopMode = .loop
-          
-          // 5. Adjust animation speed
-          
-        animationView!.animationSpeed = 0.8
-          
-          view.addSubview(animationView!)
-          
-          // 6. Play animation
-          
-          animationView!.play()
-
-        // Do any additional setup after loading the view.
+        startAnimation()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func fetchWeatherInfo() {
+        var currentWeatherDataList: CurrentWeatherDataList?
+        var forecastWeatherDataList: ForecastWeatherDataList?
+        
+        let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: "5128581"))!
+        let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: "5128581"))!
+        
+        networkManager.request(url: currentWeatherUrl) { data in
+            guard data != nil else { return }
+            currentWeatherDataList = ParseJson.currentWeather(data: data!)
+            self.networkManager.request(url: forecastWeatherUrl) { data in
+                forecastWeatherDataList = ParseJson.forecastWeather(data: data!)
+                self.completionHandler?(WeatherInformationPack(currentWeatherDataList: currentWeatherDataList!, forecastWeatherDataList: forecastWeatherDataList!))
+                self.dismiss(animated: true)
+            }
+        }
     }
-    */
-
+    
+    func startAnimation() {
+        animationView = .init(name: "99274-loading")
+        animationView!.frame = view.bounds
+        animationView!.contentMode = .scaleAspectFit
+        animationView?.loopMode = .playOnce
+        animationView!.animationSpeed = 0.8
+        view.addSubview(animationView!)
+        animationView!.play()
+        fetchWeatherInfo()
+    }
 }
