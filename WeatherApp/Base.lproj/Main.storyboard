@@ -303,6 +303,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentDateLabel" destination="NVl-JZ-gKc" id="zaL-DF-zGd"/>
                         <outlet property="currentTemperatureLabel" destination="7Uc-d6-h3s" id="MSt-Mk-Sx3"/>
                         <outlet property="humidityImageView" destination="0OT-v6-5Cg" id="bAe-sd-oBP"/>
                         <outlet property="humidityLabel" destination="wBH-e0-WEc" id="wJ5-7X-ZH0"/>

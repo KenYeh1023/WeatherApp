@@ -15,10 +15,9 @@ struct WeatherForecast {
 
 class MainViewController: UIViewController {
     
-    
+    @IBOutlet weak var currentDateLabel: UILabel!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var realFeelTemperatureLabel: UILabel!
-    
     
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
@@ -30,7 +29,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pressureView: UIView!
     @IBOutlet weak var humidityView: UIView!
     
-    
     @IBAction func locationButtonPressed(_ sender: UIButton) {
         presentLoadingView()
     }
@@ -39,17 +37,22 @@ class MainViewController: UIViewController {
     @IBOutlet weak var pressureImageView: UIImageView!
     @IBOutlet weak var humidityImageView: UIImageView!
     
-    var weatherCurrentArray: CurrentWeatherDataList?
-    var weatherForecastArray2: ForecastWeatherDataList?
+    var location: String = "Taipei"
+    var timeZone: String {
+        TimeZone.knownTimeZoneIdentifiers.filter{$0.contains(location)}[0]
+    }
     
-    var weatherForecastArray: [WeatherForecast] = [WeatherForecast(time: "NOW", weatherImage: UIImage(named: "cloudy")!, temperature: "2°C"), WeatherForecast(time: "1 AM", weatherImage: UIImage(named: "cloudy")!, temperature: "5°C"), WeatherForecast(time: "2 AM", weatherImage: UIImage(named: "windy")!, temperature: "8°C"), WeatherForecast(time: "3 AM", weatherImage: UIImage(named: "storm")!, temperature: "8°C"), WeatherForecast(time: "4 AM", weatherImage: UIImage(named: "storm")!, temperature: "15°C")]
+    var weatherCurrentArray: CurrentWeatherDataList?
+    var weatherForecastArray: ForecastWeatherDataList?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        weatherForecastArray = dateTimeFilter(array: weatherForecastArray!)
         setBackground()
     }
     
     func setBackground() {
+        currentDateLabel.text = dateStringTransfer(timeStamp: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
         
         currentTemperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
         realFeelTemperatureLabel.text = "Real Feel \(Int(weatherCurrentArray!.main.feels_like))°C"
@@ -70,7 +73,6 @@ class MainViewController: UIViewController {
         humidityView.layer.cornerRadius = 30
         
         setImageView()
-        
     }
     
     func setImageView() {
@@ -86,6 +88,25 @@ class MainViewController: UIViewController {
         humidityImageView.image = humidityImage
         humidityImageView.tintColor = .white
     }
+    
+    func dateStringTransfer(timeStamp: Double, formatterType: String) -> String {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(identifier: timeZone)
+        dateFormatter.locale = Locale(identifier: "zh_Hant_TW")
+        switch formatterType {
+        case "current":
+            dateFormatter.dateFormat = "dd LLLL, EEEE"
+        case "forecast":
+            dateFormatter.amSymbol = "AM"
+            dateFormatter.pmSymbol = "PM"
+            dateFormatter.dateFormat = "h a"
+        default: break
+        }
+        let time = Date(timeIntervalSince1970: timeStamp)
+        let dateString = dateFormatter.string(from: time)
+        return dateString
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
@@ -95,10 +116,41 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(WeatherCollectionViewCell.self)", for: indexPath) as! WeatherCollectionViewCell
-        cell.timeLabel.text = weatherForecastArray[indexPath.row].time
-        cell.weatherImage.image = weatherForecastArray[indexPath.row].weatherImage
-        cell.temperatureLabel.text = weatherForecastArray[indexPath.row].temperature
+        if indexPath.row == 0 {
+            cell.timeLabel.text = "NOW"
+            cell.temperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
+        } else {
+            cell.timeLabel.text = dateStringTransfer(timeStamp: Double(weatherForecastArray?.list[indexPath.row - 1].dt ?? 0), formatterType: "forecast")
+            cell.temperatureLabel.text = "\(Int(weatherForecastArray!.list[indexPath.row - 1].main.temp))°C"
+        }
+        cell.weatherImage.image = UIImage(named: "storm")
         
         return cell
+    }
+    
+    func dateTimeFilter(array: ForecastWeatherDataList) -> ForecastWeatherDataList {
+        var array = array
+        let currentTimeStamp: Double = getTimeIntervalByTimeZone(timeZoneId: timeZone)
+        var forecastTimeStamp: Double = Double(array.list[0].dt)
+        guard currentTimeStamp > forecastTimeStamp else { return array}
+        for _ in 0..<array.list.count {
+            array.list.remove(at: 0)
+            forecastTimeStamp = Double(array.list[0].dt)
+            if forecastTimeStamp > currentTimeStamp {
+                break
+            }
+        }
+        return array
+    }
+    
+    func getTimeIntervalByTimeZone(timeZoneId: String) -> Double {
+        let timezone = TimeZone(identifier: "America/New_York")!
+        let seconds = TimeInterval(timezone.secondsFromGMT(for: Date()))
+        //拿到該時區當下日期與時間
+        let date = Date(timeInterval: seconds, since: Date())
+        //轉換成 Time Interval
+        let timeInterval = TimeInterval(date.timeIntervalSince1970)
+
+        return timeInterval
     }
 }

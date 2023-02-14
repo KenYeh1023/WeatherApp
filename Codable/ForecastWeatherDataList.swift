@@ -4,6 +4,7 @@ struct ForecastWeatherDataList: Codable {
 }
 
 struct List: Codable {
+    var dt: Int
     var main: Main
     var weather: [Weather]
     var dt_txt: String
