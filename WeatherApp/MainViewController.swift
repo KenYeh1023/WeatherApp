@@ -7,6 +7,17 @@
 
 import UIKit
 
+struct Locations {
+   static let locations: [String: LocationIdentifiers] = ["Taipei": LocationIdentifiers(locationName: "Taipei", localeIndentifier: "zh_Hant_TW", timeZoneIdentifier: "Asia/Taipei", cityIdentifier: "1668341"), "New York": LocationIdentifiers(locationName: "New York", localeIndentifier: "en_US", timeZoneIdentifier: "America/New_York", cityIdentifier: "5128581"), "London": LocationIdentifiers(locationName: "London", localeIndentifier: "en_GB", timeZoneIdentifier: "Europe/London", cityIdentifier: "2643743")]
+}
+
+struct LocationIdentifiers {
+    var locationName: String
+    var localeIndentifier: String
+    var timeZoneIdentifier: String
+    var cityIdentifier: String
+}
+
 struct WeatherForecast {
     var time: String
     var weatherImage: UIImage
@@ -36,10 +47,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var windImageView: UIImageView!
     @IBOutlet weak var pressureImageView: UIImageView!
     @IBOutlet weak var humidityImageView: UIImageView!
+    @IBOutlet weak var locationButton: UIButton!
     
-    var location: String = "Taipei"
+    var location: LocationIdentifiers?
+    
+    var locale: String {
+        location?.localeIndentifier ?? "zh_Hant_TW"
+    }
     var timeZone: String {
-        TimeZone.knownTimeZoneIdentifiers.filter{$0.contains(location)}[0]
+//        TimeZone.knownTimeZoneIdentifiers.filter{$0.contains(location)}[0]
+        location?.timeZoneIdentifier ?? "Asia/Taipei"
     }
     
     var weatherCurrentArray: CurrentWeatherDataList?
@@ -51,6 +68,18 @@ class MainViewController: UIViewController {
         setBackground()
     }
     
+    func creatGradient(from: CGPoint, to: CGPoint, view: UIView)
+        {
+            var startGradientColor: UIColor = UIColor.init(hexString: "#b088fe")
+            var endGradientColor: UIColor = UIColor.init(hexString: "#4e99ff")
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = view.bounds
+            gradientLayer.colors = [startGradientColor.cgColor, endGradientColor.cgColor]
+            gradientLayer.startPoint = from
+            gradientLayer.endPoint = to
+            view.layer.insertSublayer(gradientLayer, at: 0)
+        }
+    
     func presentLoadingView() {
         let loadingViewController = storyboard?.instantiateViewController(withIdentifier: "loadingViewController") as? LoadingViewController
         guard loadingViewController != nil else { return }
@@ -59,6 +88,8 @@ class MainViewController: UIViewController {
         loadingViewController?.completionHandler = { data in
             self.weatherCurrentArray = data.currentWeatherDataList
             self.weatherForecastArray = data.forecastWeatherDataList
+            self.location = data.location
+            self.weatherCollectionView.reloadData()
             self.setBackground()
         }
         present(loadingViewController!, animated: true)
@@ -67,6 +98,7 @@ class MainViewController: UIViewController {
     func setBackground() {
         currentDateLabel.text = dateStringTransfer(timeStamp: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
         
+        locationButton.setTitle(location?.locationName ?? "Taipei", for: .normal)
         currentTemperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
         realFeelTemperatureLabel.text = "Real Feel \(Int(weatherCurrentArray!.main.feels_like))°C"
         windLabel.text = "\(weatherCurrentArray!.wind.speed) m/s"
@@ -76,14 +108,19 @@ class MainViewController: UIViewController {
         weatherCollectionView.backgroundColor = UIColor.init(hexString: "#222A36")
         weatherCollectionView.layer.cornerRadius = 30
         temperatureView.layer.cornerRadius = 30
-        windView.backgroundColor = UIColor.init(hexString: "#222A36")
+        
         windView.layer.cornerRadius = 30
+        windView.layer.masksToBounds = true
+        creatGradient(from: CGPoint(x: 0.5, y: 1), to: CGPoint(x: 0.5, y: 0),view: windView)
         
-        pressureView.backgroundColor = UIColor.init(hexString: "#222A36")
         pressureView.layer.cornerRadius = 30
-        
-        humidityView.backgroundColor = UIColor.init(hexString: "#222A36")
+        pressureView.layer.masksToBounds = true
+        creatGradient(from: CGPoint(x: 0, y: 0.5), to: CGPoint(x: 1, y: 0.5),view: pressureView)
+
         humidityView.layer.cornerRadius = 30
+        humidityView.layer.masksToBounds = true
+        creatGradient(from: CGPoint(x: 0.5, y: 0), to: CGPoint(x: 0.5, y: 1),view: humidityView)
+
         
         setImageView()
     }
@@ -106,7 +143,8 @@ class MainViewController: UIViewController {
 
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: timeZone)
-        dateFormatter.locale = Locale(identifier: "zh_Hant_TW")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
         switch formatterType {
         case "current":
             dateFormatter.dateFormat = "dd LLLL, EEEE"

@@ -9,6 +9,7 @@ import UIKit
 import Lottie
 
 struct WeatherInformationPack {
+    var location: LocationIdentifiers
     var currentWeatherDataList: CurrentWeatherDataList
     var forecastWeatherDataList: ForecastWeatherDataList
 }
@@ -30,16 +31,18 @@ class LoadingViewController: UIViewController {
         var currentWeatherDataList: CurrentWeatherDataList?
         var forecastWeatherDataList: ForecastWeatherDataList?
         
-        let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: "5128581"))!
-        let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: "5128581"))!
-        
-        networkManager.request(url: currentWeatherUrl) { data in
-            guard data != nil else { return }
-            currentWeatherDataList = ParseJson.currentWeather(data: data!)
-            self.networkManager.request(url: forecastWeatherUrl) { data in
-                forecastWeatherDataList = ParseJson.forecastWeather(data: data!)
-                self.completionHandler?(WeatherInformationPack(currentWeatherDataList: currentWeatherDataList!, forecastWeatherDataList: forecastWeatherDataList!))
-                self.dismiss(animated: true)
+        if let location = Locations.locations.randomElement() {
+            let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: location.value.cityIdentifier))!
+            let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: location.value.cityIdentifier))!
+            
+            networkManager.request(url: currentWeatherUrl) { data in
+                guard data != nil else { return }
+                currentWeatherDataList = ParseJson.currentWeather(data: data!)
+                self.networkManager.request(url: forecastWeatherUrl) { data in
+                    forecastWeatherDataList = ParseJson.forecastWeather(data: data!)
+                    self.completionHandler?(WeatherInformationPack(location: location.value, currentWeatherDataList: currentWeatherDataList!, forecastWeatherDataList: forecastWeatherDataList!))
+                    self.dismiss(animated: true)
+                }
             }
         }
     }

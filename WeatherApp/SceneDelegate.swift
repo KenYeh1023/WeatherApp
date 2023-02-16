@@ -27,19 +27,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var currentWeatherDataList: CurrentWeatherDataList?
         var forecastWeatherDataList: ForecastWeatherDataList?
         
-        let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: "1668341"))!
-        let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: "1668341"))!
-        
-        networkManager.request(url: currentWeatherUrl) { data in
-            guard data != nil else { return }
-            currentWeatherDataList = ParseJson.currentWeather(data: data!)
-            self.networkManager.request(url: forecastWeatherUrl) { data in
-                forecastWeatherDataList = ParseJson.forecastWeather(data: data!)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-                viewController.weatherCurrentArray = currentWeatherDataList
-                viewController.weatherForecastArray = forecastWeatherDataList
-                self.enterInitialView(windScene: windScene, initView: viewController)
+        if let cityId = Locations.locations["Taipei"]?.cityIdentifier {
+            let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: cityId))!
+            let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: cityId))!
+            
+            networkManager.request(url: currentWeatherUrl) { data in
+                guard data != nil else { return }
+                currentWeatherDataList = ParseJson.currentWeather(data: data!)
+                self.networkManager.request(url: forecastWeatherUrl) { data in
+                    forecastWeatherDataList = ParseJson.forecastWeather(data: data!)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+                    viewController.weatherCurrentArray = currentWeatherDataList
+                    viewController.weatherForecastArray = forecastWeatherDataList
+                    viewController.location = Locations.locations["Taipei"]
+                    self.enterInitialView(windScene: windScene, initView: viewController)
+                }
             }
         }
     }

@@ -308,6 +308,7 @@
                         <outlet property="humidityImageView" destination="0OT-v6-5Cg" id="bAe-sd-oBP"/>
                         <outlet property="humidityLabel" destination="wBH-e0-WEc" id="wJ5-7X-ZH0"/>
                         <outlet property="humidityView" destination="iOJ-O6-cPZ" id="paW-DB-jzf"/>
+                        <outlet property="locationButton" destination="MRt-JN-Hlm" id="ubu-Su-5Dh"/>
                         <outlet property="pressureImageView" destination="tbS-3g-Tov" id="m9i-F3-hAg"/>
                         <outlet property="pressureLabel" destination="qQm-oC-2NT" id="ER5-4r-wha"/>
                         <outlet property="pressureView" destination="QHT-Fu-hja" id="NRe-ok-faI"/>
@@ -316,7 +317,7 @@
                         <outlet property="weatherCollectionView" destination="Pto-0c-WVX" id="PdI-q1-hV0"/>
                         <outlet property="windImageView" destination="Rch-he-oLP" id="wFY-aG-zFK"/>
                         <outlet property="windLabel" destination="UQz-Dv-vd7" id="YnX-bU-VCC"/>
-                        <outlet property="windView" destination="vBN-1I-85M" id="ESY-GN-X27"/>
+                        <outlet property="windView" destination="vBN-1I-85M" id="F04-Dn-08A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
