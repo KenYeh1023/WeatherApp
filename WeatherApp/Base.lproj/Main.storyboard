@@ -363,6 +363,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.79703021523178808" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="pR0-jX-YDh" id="R35-bh-eqW"/>
                         <outlet property="searchView" destination="9kM-Ph-viZ" id="4ws-4n-633"/>
                     </connections>
                 </viewController>

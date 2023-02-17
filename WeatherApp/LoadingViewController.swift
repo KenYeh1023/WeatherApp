@@ -21,6 +21,8 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         print(searchTextField.text ?? "???")
     }
     
+    @IBOutlet var backgroundView: UIView!
+    
     private var animationView: LottieAnimationView?
     
     private var networkManager = NetworkManager()
@@ -58,6 +60,9 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     func setBackground() {
         searchTextField = self.view.viewWithTag(999) as! UITextField
         searchTextField.delegate = self
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapGesture(_:)))
+        backgroundView.addGestureRecognizer(gesture)
+        
         searchView.layer.cornerRadius = 20
         searchView.layer.masksToBounds = true
     }
@@ -72,9 +77,14 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         animationView!.play()
         fetchWeatherInfo()
     }
+    
+    @objc private func backgroundTapGesture(_ sender: UITapGestureRecognizer) {
+        self.dismiss(animated: true)
+    }
 }
 
 extension LoadingViewController {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let countOfWords = string.count + textField.text!.count - range.length
         guard countOfWords < 20 else { return false }
