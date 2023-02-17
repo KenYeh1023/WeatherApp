@@ -14,16 +14,18 @@ struct WeatherInformationPack {
     var forecastWeatherDataList: ForecastWeatherDataList
 }
 
-class LoadingViewController: UIViewController {
-    
-    
+class LoadingViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchView: UIView!
-    
+    @IBAction func searchButtonPressed(_ sender: UIButton) {
+        print(searchTextField.text ?? "???")
+    }
     
     private var animationView: LottieAnimationView?
     
     private var networkManager = NetworkManager()
+    
+    var searchTextField: UITextField = UITextField()
     
     var completionHandler: ((WeatherInformationPack)->())?
 
@@ -54,6 +56,8 @@ class LoadingViewController: UIViewController {
     }
     
     func setBackground() {
+        searchTextField = self.view.viewWithTag(999) as! UITextField
+        searchTextField.delegate = self
         searchView.layer.cornerRadius = 20
         searchView.layer.masksToBounds = true
     }
@@ -67,5 +71,32 @@ class LoadingViewController: UIViewController {
         view.addSubview(animationView!)
         animationView!.play()
         fetchWeatherInfo()
+    }
+}
+
+extension LoadingViewController {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let countOfWords = string.count + textField.text!.count - range.length
+        guard countOfWords < 20 else { return false }
+        return string.containsValidCharacter
+    }
+}
+
+//禁止使用者輸入特殊字元
+extension String {
+    var containsValidCharacter: Bool {
+        guard self != "" else { return true }
+        let noNeedToRestrict = CharacterSet(charactersIn: "_") //可以打斜線
+        if noNeedToRestrict.containsUnicodeScalars(of: self.last!) {
+            return true
+        } else {
+            return CharacterSet.alphanumerics.containsUnicodeScalars(of: self.last!)
+        }
+    }
+}
+
+extension CharacterSet {
+    func containsUnicodeScalars(of character: Character) -> Bool {
+        return character.unicodeScalars.allSatisfy(contains(_:))
     }
 }
