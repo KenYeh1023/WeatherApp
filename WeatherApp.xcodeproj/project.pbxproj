@@ -12,9 +12,10 @@
 		BEB82B21298E63E900AC5A2F /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B20298E63E900AC5A2F /* WeatherCollectionViewCell.swift */; };
 		BEB82B232991E65800AC5A2F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B222991E65800AC5A2F /* LoadingViewController.swift */; };
 		BEB82B28299203DB00AC5A2F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BEB82B27299203DB00AC5A2F /* Lottie */; };
-		BEB82B2A299206EC00AC5A2F /* 99274-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB82B29299206EC00AC5A2F /* 99274-loading.json */; };
 		BEB82B2F2995F49600AC5A2F /* ForecastWeatherDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B2E2995F49600AC5A2F /* ForecastWeatherDataList.swift */; };
 		BEB82B312995FA2F00AC5A2F /* ParseJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B302995FA2F00AC5A2F /* ParseJson.swift */; };
+		BEB82B35299F339100AC5A2F /* noResult.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB82B34299F339100AC5A2F /* noResult.json */; };
+		BEB82B37299F34ED00AC5A2F /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB82B36299F34ED00AC5A2F /* loading.json */; };
 		BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC1298A192B00015D19 /* AppDelegate.swift */; };
 		BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC3298A192B00015D19 /* SceneDelegate.swift */; };
 		BED55FC6298A192B00015D19 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC5298A192B00015D19 /* MainViewController.swift */; };
@@ -50,9 +51,10 @@
 		BEB82B1E298CFB1700AC5A2F /* Gilroy-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Black.ttf"; sourceTree = "<group>"; };
 		BEB82B20298E63E900AC5A2F /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		BEB82B222991E65800AC5A2F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
-		BEB82B29299206EC00AC5A2F /* 99274-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "99274-loading.json"; sourceTree = "<group>"; };
 		BEB82B2E2995F49600AC5A2F /* ForecastWeatherDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherDataList.swift; sourceTree = "<group>"; };
 		BEB82B302995FA2F00AC5A2F /* ParseJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseJson.swift; sourceTree = "<group>"; };
+		BEB82B34299F339100AC5A2F /* noResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noResult.json; sourceTree = "<group>"; };
+		BEB82B36299F34ED00AC5A2F /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		BED55FBE298A192B00015D19 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BED55FC1298A192B00015D19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BED55FC3298A192B00015D19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,7 +126,8 @@
 		BEB82B332995FB4700AC5A2F /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				BEB82B29299206EC00AC5A2F /* 99274-loading.json */,
+				BEB82B34299F339100AC5A2F /* noResult.json */,
+				BEB82B36299F34ED00AC5A2F /* loading.json */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -300,7 +303,8 @@
 			files = (
 				BEB82B1F298CFB1700AC5A2F /* Gilroy-Black.ttf in Resources */,
 				BED55FCE298A192C00015D19 /* LaunchScreen.storyboard in Resources */,
-				BEB82B2A299206EC00AC5A2F /* 99274-loading.json in Resources */,
+				BEB82B35299F339100AC5A2F /* noResult.json in Resources */,
+				BEB82B37299F34ED00AC5A2F /* loading.json in Resources */,
 				BED55FCB298A192C00015D19 /* Assets.xcassets in Resources */,
 				BED55FC9298A192B00015D19 /* Main.storyboard in Resources */,
 			);

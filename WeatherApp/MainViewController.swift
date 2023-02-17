@@ -8,7 +8,7 @@
 import UIKit
 
 struct Locations {
-   static let locations: [String: LocationIdentifiers] = ["Taipei": LocationIdentifiers(locationName: "Taipei", localeIndentifier: "zh_Hant_TW", timeZoneIdentifier: "Asia/Taipei", cityIdentifier: "1668341"), "New York": LocationIdentifiers(locationName: "New York", localeIndentifier: "en_US", timeZoneIdentifier: "America/New_York", cityIdentifier: "5128581"), "London": LocationIdentifiers(locationName: "London", localeIndentifier: "en_GB", timeZoneIdentifier: "Europe/London", cityIdentifier: "2643743")]
+   static let locations: [String: LocationIdentifiers] = ["TAIPEI": LocationIdentifiers(locationName: "Taipei", localeIndentifier: "zh_Hant_TW", timeZoneIdentifier: "Asia/Taipei", cityIdentifier: "1668341"), "NEWYORK": LocationIdentifiers(locationName: "New York", localeIndentifier: "en_US", timeZoneIdentifier: "America/New_York", cityIdentifier: "5128581"), "LONDON": LocationIdentifiers(locationName: "London", localeIndentifier: "en_GB", timeZoneIdentifier: "Europe/London", cityIdentifier: "2643743")]
 }
 
 struct LocationIdentifiers {

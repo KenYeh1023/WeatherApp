@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var currentWeatherDataList: CurrentWeatherDataList?
         var forecastWeatherDataList: ForecastWeatherDataList?
         
-        if let cityId = Locations.locations["Taipei"]?.cityIdentifier {
+        if let cityId = Locations.locations["TAIPEI"]?.cityIdentifier {
             let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: cityId))!
             let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: cityId))!
             
@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
                     viewController.weatherCurrentArray = currentWeatherDataList
                     viewController.weatherForecastArray = forecastWeatherDataList
-                    viewController.location = Locations.locations["Taipei"]
+                    viewController.location = Locations.locations["TAIPEI"]
                     self.enterInitialView(windScene: windScene, initView: viewController)
                 }
             }

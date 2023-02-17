@@ -8,6 +8,11 @@
 import UIKit
 import Lottie
 
+enum AnimationType: String {
+    case noResult = "noResult"
+    case loading = "loading"
+}
+
 struct WeatherInformationPack {
     var location: LocationIdentifiers
     var currentWeatherDataList: CurrentWeatherDataList
@@ -18,12 +23,13 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchView: UIView!
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        print(searchTextField.text ?? "???")
+        fetchWeatherInfo()
     }
     
     @IBOutlet var backgroundView: UIView!
     
     private var animationView: LottieAnimationView?
+    private var messageLabel: UILabel = UILabel()
     
     private var networkManager = NetworkManager()
     
@@ -34,18 +40,27 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
-//        startAnimation()
     }
     
     func fetchWeatherInfo() {
+        guard searchTextField.text != nil || searchTextField.text != "" else { return }
         var currentWeatherDataList: CurrentWeatherDataList?
         var forecastWeatherDataList: ForecastWeatherDataList?
         
-        if let location = Locations.locations.randomElement() {
-            let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: location.value.cityIdentifier))!
-            let forecastWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .forecastWeather, cityId: location.value.cityIdentifier))!
+        var userInputText: String = searchTextField.text!
+        userInputText = userInputText.replacingOccurrences(of: " ", with: "").uppercased()
+        let index = Locations.locations.firstIndex(where: {$0.key == userInputText})
+        startAnimation(type: .loading)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            guard let index = index else {
+                self.startAnimation(type: .noResult)
+                return }
+            let location = Locations.locations[index]
             
-            networkManager.request(url: currentWeatherUrl) { data in
+            let currentWeatherUrl: URL = URL(string: self.networkManager.getUrlAddress(searchType: .currentWeather, cityId: location.value.cityIdentifier))!
+            let forecastWeatherUrl: URL = URL(string: self.networkManager.getUrlAddress(searchType: .forecastWeather, cityId: location.value.cityIdentifier))!
+            
+            self.networkManager.request(url: currentWeatherUrl) { data in
                 guard data != nil else { return }
                 currentWeatherDataList = ParseJson.currentWeather(data: data!)
                 self.networkManager.request(url: forecastWeatherUrl) { data in
@@ -67,15 +82,43 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         searchView.layer.masksToBounds = true
     }
     
-    func startAnimation() {
-        animationView = .init(name: "99274-loading")
-        animationView!.frame = view.bounds
-        animationView!.contentMode = .scaleAspectFit
-        animationView?.loopMode = .playOnce
-        animationView!.animationSpeed = 0.8
+    func startAnimation(type: AnimationType) {
+        animationView?.removeFromSuperview()
+        messageLabel.removeFromSuperview()
+        
+        animationView = .init(name: type.rawValue)
+        switch type {
+        case .noResult:
+            view.addSubview(messageLabel)
+            messageLabel.text = "Oops! Invalid Location ;("
+            messageLabel.font = UIFont(name: "system", size: 16)
+            messageLabel.textColor = .white
+            messageLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+            messageLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            messageLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            messageLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 100).isActive = true
+            //put it third
+            messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        default: break
+        }
+        
+        //Mark:- 順序很重要！！！！！
+        //put it first
         view.addSubview(animationView!)
-        animationView!.play()
-        fetchWeatherInfo()
+        //put them second
+        animationView?.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        animationView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        animationView?.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        animationView?.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        //put it third
+        animationView?.translatesAutoresizingMaskIntoConstraints = false
+
+        
+        animationView!.contentMode = .scaleAspectFit
+        animationView?.loopMode = .loop
+        animationView!.animationSpeed = 0.8
+//        view.addSubview(animationView!)
+        animationView?.play()
     }
     
     @objc private func backgroundTapGesture(_ sender: UITapGestureRecognizer) {
@@ -96,7 +139,7 @@ extension LoadingViewController {
 extension String {
     var containsValidCharacter: Bool {
         guard self != "" else { return true }
-        let noNeedToRestrict = CharacterSet(charactersIn: "_") //可以打斜線
+        let noNeedToRestrict = CharacterSet(charactersIn: " ") //可以打空白
         if noNeedToRestrict.containsUnicodeScalars(of: self.last!) {
             return true
         } else {
