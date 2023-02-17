@@ -70,8 +70,8 @@ class MainViewController: UIViewController {
     
     func creatGradient(from: CGPoint, to: CGPoint, view: UIView)
         {
-            var startGradientColor: UIColor = UIColor.init(hexString: "#b088fe")
-            var endGradientColor: UIColor = UIColor.init(hexString: "#4e99ff")
+            let startGradientColor: UIColor = UIColor.init(hexString: "#b088fe")
+            let endGradientColor: UIColor = UIColor.init(hexString: "#4e99ff")
             let gradientLayer = CAGradientLayer()
             gradientLayer.frame = view.bounds
             gradientLayer.colors = [startGradientColor.cgColor, endGradientColor.cgColor]
@@ -98,11 +98,12 @@ class MainViewController: UIViewController {
     func setBackground() {
         currentDateLabel.text = dateStringTransfer(timeStamp: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
         
-        locationButton.setTitle(location?.locationName ?? "Taipei", for: .normal)
+        locationButton.setTitle((location?.locationName ?? "Taipei") + "  ", for: .normal)
         currentTemperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
         realFeelTemperatureLabel.text = "Real Feel \(Int(weatherCurrentArray!.main.feels_like))°C"
-        windLabel.text = "\(weatherCurrentArray!.wind.speed) m/s"
-        pressureLabel.text = "\(weatherCurrentArray!.main.pressure) MB"
+        //風速顯示為小數點後一位
+        windLabel.text = String(format: "%.1f", weatherCurrentArray!.wind.speed) + " m/s"
+        pressureLabel.text = "\(weatherCurrentArray!.main.pressure) hPa"
         humidityLabel.text = "\(weatherCurrentArray!.main.humidity) %"
         
         weatherCollectionView.backgroundColor = UIColor.init(hexString: "#222A36")
@@ -121,7 +122,6 @@ class MainViewController: UIViewController {
         humidityView.layer.masksToBounds = true
         creatGradient(from: CGPoint(x: 0.5, y: 0), to: CGPoint(x: 0.5, y: 1),view: humidityView)
 
-        
         setImageView()
     }
     

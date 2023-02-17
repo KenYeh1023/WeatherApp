@@ -16,6 +16,11 @@ struct WeatherInformationPack {
 
 class LoadingViewController: UIViewController {
     
+    
+    
+    @IBOutlet weak var searchView: UIView!
+    
+    
     private var animationView: LottieAnimationView?
     
     private var networkManager = NetworkManager()
@@ -24,7 +29,8 @@ class LoadingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        startAnimation()
+        setBackground()
+//        startAnimation()
     }
     
     func fetchWeatherInfo() {
@@ -45,6 +51,11 @@ class LoadingViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func setBackground() {
+        searchView.layer.cornerRadius = 20
+        searchView.layer.masksToBounds = true
     }
     
     func startAnimation() {
