@@ -28,6 +28,10 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var backgroundView: UIView!
     
+    @IBOutlet weak var searchButton: UIButton!
+    
+    @IBOutlet weak var locationImageView: UIImageView!
+    
     private var animationView: LottieAnimationView?
     private var messageLabel: UILabel = UILabel()
     
@@ -75,9 +79,18 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     func setBackground() {
         searchTextField = self.view.viewWithTag(999) as! UITextField
         searchTextField.delegate = self
+        searchTextField.placeholder = "City Name"
         let gesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapGesture(_:)))
         backgroundView.addGestureRecognizer(gesture)
         
+        locationImageView.image = UIImage(named: "location")?.withRenderingMode(.alwaysTemplate)
+        locationImageView.tintColor = UIColor(hexString: "#0b233d")
+        
+        searchButton.imageView?.image = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
+        searchButton.layer.cornerRadius = 20
+        searchButton.backgroundColor = UIColor(hexString: "#e2f6fd")
+        
+        searchButton.tintColor = .black
         searchView.layer.cornerRadius = 20
         searchView.layer.masksToBounds = true
     }
@@ -97,7 +110,6 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
             messageLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
             messageLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
             messageLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 100).isActive = true
-            //put it third
             messageLabel.translatesAutoresizingMaskIntoConstraints = false
         default: break
         }
@@ -117,7 +129,6 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         animationView!.contentMode = .scaleAspectFit
         animationView?.loopMode = .loop
         animationView!.animationSpeed = 0.8
-//        view.addSubview(animationView!)
         animationView?.play()
     }
     
