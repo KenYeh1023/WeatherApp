@@ -16,6 +16,8 @@ struct WeatherForecast {
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var backgroundImage: UIImageView!
+    
     @IBOutlet weak var currentDateLabel: UILabel!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var realFeelTemperatureLabel: UILabel!
@@ -76,10 +78,11 @@ class MainViewController: UIViewController {
     }
     
     func setBackground() {
+        backgroundImage.image = checkDayOrNight()
         UIView.animate(withDuration: 0.5, animations: {
              self.weatherCollectionView.contentOffset.x = 0
         })
-        currentDateLabel.text = dateStringTransfer(timeStamp: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
+        currentDateLabel.text = dateStringTransfer(GMTSecs: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
         ISOButton.setTitle(weatherCurrentArray?.sys.country, for: .normal)
         locationButton.setTitle((weatherCurrentArray?.name ?? "") + "  ", for: .normal)
         currentTemperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
@@ -122,7 +125,7 @@ class MainViewController: UIViewController {
         humidityImageView.tintColor = .white
     }
     
-    func dateStringTransfer(timeStamp: Double, formatterType: String) -> String {
+    func dateStringTransfer(GMTSecs: Double, formatterType: String) -> String {
 
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(secondsFromGMT: weatherCurrentArray?.timezone ?? 0)
@@ -137,9 +140,19 @@ class MainViewController: UIViewController {
             dateFormatter.dateFormat = "h a"
         default: break
         }
-        let time = Date(timeIntervalSince1970: timeStamp)
+        let time = Date(timeIntervalSince1970: GMTSecs)
         let dateString = dateFormatter.string(from: time)
         return dateString
+    }
+    
+    func checkDayOrNight() -> UIImage {
+        let currentTimeInterval = Int(Date().timeIntervalSince1970)
+        let sunriseTime = weatherCurrentArray?.sys.sunrise ?? 0
+        let sunsetTime = weatherCurrentArray?.sys.sunset ?? 0
+        guard currentTimeInterval >= sunriseTime && currentTimeInterval < sunsetTime else {
+            return UIImage(named: "nighttime")!
+        }
+        return UIImage(named: "daytime")!
     }
 }
 
@@ -158,7 +171,7 @@ extension MainViewController: UICollectionViewDataSource {
             cell.temperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
             cell.weatherImage.sd_setImage(with: URL(string: currentIconUrlString))
         } else {
-            cell.timeLabel.text = dateStringTransfer(timeStamp: Double(weatherForecastArray?.list[indexPath.row - 1].dt ?? 0), formatterType: "forecast")
+            cell.timeLabel.text = dateStringTransfer(GMTSecs: Double(weatherForecastArray?.list[indexPath.row - 1].dt ?? 0), formatterType: "forecast")
             cell.temperatureLabel.text = "\(Int(weatherForecastArray!.list[indexPath.row - 1].main.temp))°C"
             cell.weatherImage.sd_setImage(with: URL(string: forecastIconUrlString))
         }

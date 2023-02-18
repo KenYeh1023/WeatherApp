@@ -48,6 +48,8 @@
                                         <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="50"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="0.0" height="2"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Feel 9°C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlJ-BQ-G8N">
                                         <rect key="frame" x="270" y="173" width="115" height="20"/>
@@ -324,6 +326,7 @@
                     </view>
                     <connections>
                         <outlet property="ISOButton" destination="sKx-M1-hPm" id="bAv-NI-jho"/>
+                        <outlet property="backgroundImage" destination="zEL-RN-euY" id="2gh-60-aS8"/>
                         <outlet property="currentDateLabel" destination="NVl-JZ-gKc" id="zaL-DF-zGd"/>
                         <outlet property="currentTemperatureLabel" destination="7Uc-d6-h3s" id="MSt-Mk-Sx3"/>
                         <outlet property="humidityImageView" destination="0OT-v6-5Cg" id="bAe-sd-oBP"/>
@@ -399,8 +402,8 @@
         <image name="arrow.up.right" catalog="system" width="128" height="112"/>
         <image name="background" width="459" height="459"/>
         <image name="humidity" width="512" height="512"/>
-        <image name="location" width="512" height="512"/>
         <image name="location" catalog="system" width="128" height="121"/>
+        <image name="location" width="512" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="wind" width="512" height="512"/>
         <namedColor name="AccentColor">
