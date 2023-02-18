@@ -19,6 +19,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var realFeelTemperatureLabel: UILabel!
     
+    @IBOutlet weak var ISOButton: UIButton!
+    
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
@@ -74,7 +76,7 @@ class MainViewController: UIViewController {
     
     func setBackground() {
         currentDateLabel.text = dateStringTransfer(timeStamp: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
-        
+        ISOButton.setTitle(weatherCurrentArray?.sys.country, for: .normal)
         locationButton.setTitle((weatherCurrentArray?.name ?? "") + "  ", for: .normal)
         currentTemperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
         realFeelTemperatureLabel.text = "Real Feel \(Int(weatherCurrentArray!.main.feels_like))°C"
@@ -140,7 +142,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

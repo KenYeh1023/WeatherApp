@@ -59,9 +59,12 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRt-JN-Hlm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRt-JN-Hlm">
                                         <rect key="frame" x="279" y="441" width="114" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="Qlp-pW-WSz"/>
+                                            <constraint firstAttribute="height" constant="60" id="vvf-pa-a4H"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Taipei  ">
                                             <imageReference key="image" image="arrow.up.right" catalog="system" symbolScale="medium"/>
@@ -72,6 +75,19 @@
                                             <action selector="locationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0f4-9k-nPm"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKx-M1-hPm">
+                                        <rect key="frame" x="8" y="449" width="88" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="88" id="OYx-Un-sCA"/>
+                                            <constraint firstAttribute="height" constant="43" id="pzU-1C-guj"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title=" TW">
+                                            <imageReference key="image" image="location" catalog="system" symbolScale="medium"/>
+                                            <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="16"/>
+                                            <color key="baseForegroundColor" systemColor="opaqueSeparatorColor"/>
+                                        </buttonConfiguration>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                                 <constraints>
@@ -80,8 +96,12 @@
                                     <constraint firstItem="zEL-RN-euY" firstAttribute="top" secondItem="6gm-gc-c0j" secondAttribute="top" id="Fek-JT-tiK"/>
                                     <constraint firstAttribute="trailing" secondItem="zEL-RN-euY" secondAttribute="trailing" id="Hef-yy-21p"/>
                                     <constraint firstItem="7Uc-d6-h3s" firstAttribute="top" secondItem="NVl-JZ-gKc" secondAttribute="bottom" constant="8" id="P5D-Da-ic4"/>
+                                    <constraint firstAttribute="trailing" secondItem="MRt-JN-Hlm" secondAttribute="trailing" id="QMw-he-OeE"/>
                                     <constraint firstAttribute="trailing" secondItem="DlJ-BQ-G8N" secondAttribute="trailing" constant="8" id="TLc-7V-T0u"/>
+                                    <constraint firstAttribute="bottom" secondItem="MRt-JN-Hlm" secondAttribute="bottom" constant="8" id="VYT-DC-e0n"/>
                                     <constraint firstItem="DlJ-BQ-G8N" firstAttribute="top" secondItem="7Uc-d6-h3s" secondAttribute="bottom" constant="5" id="WLF-PY-Y0b"/>
+                                    <constraint firstAttribute="bottom" secondItem="sKx-M1-hPm" secondAttribute="bottom" constant="17" id="Wl1-lX-YJB"/>
+                                    <constraint firstItem="sKx-M1-hPm" firstAttribute="leading" secondItem="6gm-gc-c0j" secondAttribute="leading" constant="8" id="Yso-4H-mg6"/>
                                     <constraint firstItem="NVl-JZ-gKc" firstAttribute="leading" secondItem="6gm-gc-c0j" secondAttribute="leading" constant="8" id="beq-gS-XZc"/>
                                     <constraint firstAttribute="bottom" secondItem="zEL-RN-euY" secondAttribute="bottom" id="dyU-cO-NRh"/>
                                     <constraint firstAttribute="trailing" secondItem="7Uc-d6-h3s" secondAttribute="trailing" constant="8" id="ngG-TE-Rk6"/>
@@ -303,6 +323,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ISOButton" destination="sKx-M1-hPm" id="bAv-NI-jho"/>
                         <outlet property="currentDateLabel" destination="NVl-JZ-gKc" id="zaL-DF-zGd"/>
                         <outlet property="currentTemperatureLabel" destination="7Uc-d6-h3s" id="MSt-Mk-Sx3"/>
                         <outlet property="humidityImageView" destination="0OT-v6-5Cg" id="bAe-sd-oBP"/>
@@ -379,11 +400,15 @@
         <image name="background" width="459" height="459"/>
         <image name="humidity" width="512" height="512"/>
         <image name="location" width="512" height="512"/>
+        <image name="location" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="wind" width="512" height="512"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
