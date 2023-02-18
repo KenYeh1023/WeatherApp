@@ -56,10 +56,12 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         startAnimation(type: .loading)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.networkManager.fetchCurrentWeather(cityName: userInputText) { data in
-                guard let data = data else { return }
+                guard let data = data else { self.startAnimation(type: .noResult)
+                    return }
                 currentWeatherDataList = data
                 self.networkManager.fetchForecastWeather(cityId: "\(data.id)") { data in
-                    guard let data = data else { return }
+                    guard let data = data else { self.startAnimation(type: .noResult)
+                        return }
                     forecastWeatherDataList = data
                     self.completionHandler?(WeatherInformationPack(currentWeatherDataList: currentWeatherDataList!, forecastWeatherDataList: forecastWeatherDataList!))
                     self.dismiss(animated: true)

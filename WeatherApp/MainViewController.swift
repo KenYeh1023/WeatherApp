@@ -121,7 +121,6 @@ class MainViewController: UIViewController {
     func dateStringTransfer(timeStamp: Double, formatterType: String) -> String {
 
         let dateFormatter = DateFormatter()
-//        dateFormatter.timeZone = TimeZone(identifier: timeZone)
         dateFormatter.timeZone = TimeZone(secondsFromGMT: weatherCurrentArray?.timezone ?? 0)
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
