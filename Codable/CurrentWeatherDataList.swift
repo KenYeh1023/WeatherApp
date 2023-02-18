@@ -1,8 +1,13 @@
 
 struct CurrentWeatherDataList: Codable {
+    var id: Int
+    var name: String
+    var timezone: Int
     var weather: [Weather]
     var main: Main
     var wind: Wind
+    var sys: Sys
+    var cod: Int
 }
 
 struct Weather: Codable {
@@ -21,4 +26,10 @@ struct Main: Codable {
 
 struct Wind: Codable {
     var speed: Float
+}
+
+struct Sys: Codable {
+    var country: String
+    var sunrise: Int
+    var sunset: Int
 }

@@ -98,7 +98,7 @@ class MainViewController: UIViewController {
     func setBackground() {
         currentDateLabel.text = dateStringTransfer(timeStamp: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
         
-        locationButton.setTitle((location?.locationName ?? "Taipei") + "  ", for: .normal)
+        locationButton.setTitle((weatherCurrentArray?.name ?? "") + "  ", for: .normal)
         currentTemperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
         realFeelTemperatureLabel.text = "Real Feel \(Int(weatherCurrentArray!.main.feels_like))°C"
         //風速顯示為小數點後一位

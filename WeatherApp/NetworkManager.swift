@@ -39,7 +39,11 @@ class NetworkManager {
     }
     
     func getUrlAddress(searchType: Api, cityId: String) -> String {
-        return searchType.path + "?" + "id=\(cityId)&appid=9e8de8930618664ac4e71687dc3e86d8&units=metric"
+        switch searchType {
+        case .currentWeather:
+            return searchType.path + "?" + "q=\(cityId)&appid=9e8de8930618664ac4e71687dc3e86d8&units=metric"
+        case .forecastWeather:
+            return searchType.path + "?" + "id=\(cityId)&appid=9e8de8930618664ac4e71687dc3e86d8&units=metric"
+        }
     }
-    
 }
