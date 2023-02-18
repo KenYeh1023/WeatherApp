@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 struct WeatherForecast {
     var time: String
@@ -146,15 +147,18 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(WeatherCollectionViewCell.self)", for: indexPath) as! WeatherCollectionViewCell
+        let currentIconUrlString: String = "https://openweathermap.org/img/wn/\(weatherCurrentArray?.weather[0].icon ?? "01d")@2x.png"
+        let forecastIconUrlString: String = "https://openweathermap.org/img/wn/\(weatherForecastArray?.list[0].weather[0].icon ?? "01d")@2x.png"
+
         if indexPath.row == 0 {
             cell.timeLabel.text = "NOW"
             cell.temperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
+            cell.weatherImage.sd_setImage(with: URL(string: currentIconUrlString))
         } else {
             cell.timeLabel.text = dateStringTransfer(timeStamp: Double(weatherForecastArray?.list[indexPath.row - 1].dt ?? 0), formatterType: "forecast")
             cell.temperatureLabel.text = "\(Int(weatherForecastArray!.list[indexPath.row - 1].main.temp))°C"
+            cell.weatherImage.sd_setImage(with: URL(string: forecastIconUrlString))
         }
-        cell.weatherImage.image = UIImage(named: "storm")
-        
         return cell
     }
 }
