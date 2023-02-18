@@ -27,14 +27,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var currentWeatherDataList: CurrentWeatherDataList?
         var forecastWeatherDataList: ForecastWeatherDataList?
         
-        let currentWeatherUrl: URL = URL(string: networkManager.getUrlAddress(searchType: .currentWeather, cityId: "Taipei"))!
-            
-        networkManager.request(url: currentWeatherUrl) { data in
-            guard data != nil else { return }
-            currentWeatherDataList = ParseJson.currentWeather(data: data!)
-            let forecastWeatherUrl: URL = URL(string: self.networkManager.getUrlAddress(searchType: .forecastWeather, cityId: "\(currentWeatherDataList!.id)"))!
-            self.networkManager.request(url: forecastWeatherUrl) { data in
-                forecastWeatherDataList = ParseJson.forecastWeather(data: data!)
+        networkManager.fetchCurrentWeather(cityName: "Taipei") { data in
+            guard let data = data else { return }
+            currentWeatherDataList = data
+            self.networkManager.fetchForecastWeather(cityId: "\(data.id)") { data in
+                guard let data = data else { return }
+                forecastWeatherDataList = data
+                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
                 viewController.weatherCurrentArray = currentWeatherDataList
