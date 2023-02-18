@@ -48,27 +48,28 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     
     func fetchWeatherInfo() {
         guard searchTextField.text != nil || searchTextField.text != "" else { return }
+        
         var currentWeatherDataList: CurrentWeatherDataList?
         var forecastWeatherDataList: ForecastWeatherDataList?
         
         var userInputText: String = searchTextField.text!
+        //拿時區
         userInputText = userInputText.replacingOccurrences(of: " ", with: "").uppercased()
         let index = Locations.locations.firstIndex(where: {$0.key == userInputText})
+        
         startAnimation(type: .loading)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             guard let index = index else {
                 self.startAnimation(type: .noResult)
                 return }
             let location = Locations.locations[index]
-            
-            let currentWeatherUrl: URL = URL(string: self.networkManager.getUrlAddress(searchType: .currentWeather, cityId: location.value.cityIdentifier))!
-            let forecastWeatherUrl: URL = URL(string: self.networkManager.getUrlAddress(searchType: .forecastWeather, cityId: location.value.cityIdentifier))!
-            
-            self.networkManager.request(url: currentWeatherUrl) { data in
-                guard data != nil else { return }
-                currentWeatherDataList = ParseJson.currentWeather(data: data!)
-                self.networkManager.request(url: forecastWeatherUrl) { data in
-                    forecastWeatherDataList = ParseJson.forecastWeather(data: data!)
+        //
+            self.networkManager.fetchCurrentWeather(cityName: userInputText) { data in
+                guard let data = data else { return }
+                currentWeatherDataList = data
+                self.networkManager.fetchForecastWeather(cityId: "\(data.id)") { data in
+                    guard let data = data else { return }
+                    forecastWeatherDataList = data
                     self.completionHandler?(WeatherInformationPack(location: location.value, currentWeatherDataList: currentWeatherDataList!, forecastWeatherDataList: forecastWeatherDataList!))
                     self.dismiss(animated: true)
                 }
