@@ -7,17 +7,6 @@
 
 import UIKit
 
-struct Locations {
-   static let locations: [String: LocationIdentifiers] = ["TAIPEI": LocationIdentifiers(locationName: "Taipei", localeIndentifier: "zh_Hant_TW", timeZoneIdentifier: "Asia/Taipei", cityIdentifier: "1668341"), "NEWYORK": LocationIdentifiers(locationName: "New York", localeIndentifier: "en_US", timeZoneIdentifier: "America/New_York", cityIdentifier: "5128581"), "LONDON": LocationIdentifiers(locationName: "London", localeIndentifier: "en_GB", timeZoneIdentifier: "Europe/London", cityIdentifier: "2643743")]
-}
-
-struct LocationIdentifiers {
-    var locationName: String
-    var localeIndentifier: String
-    var timeZoneIdentifier: String
-    var cityIdentifier: String
-}
-
 struct WeatherForecast {
     var time: String
     var weatherImage: UIImage
@@ -49,22 +38,11 @@ class MainViewController: UIViewController {
     @IBOutlet weak var humidityImageView: UIImageView!
     @IBOutlet weak var locationButton: UIButton!
     
-    var location: LocationIdentifiers?
-    
-    var locale: String {
-        location?.localeIndentifier ?? "zh_Hant_TW"
-    }
-    var timeZone: String {
-//        TimeZone.knownTimeZoneIdentifiers.filter{$0.contains(location)}[0]
-        location?.timeZoneIdentifier ?? "Asia/Taipei"
-    }
-    
     var weatherCurrentArray: CurrentWeatherDataList?
     var weatherForecastArray: ForecastWeatherDataList?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        weatherForecastArray = dateTimeFilter(array: weatherForecastArray!)
         setBackground()
     }
     
@@ -88,7 +66,6 @@ class MainViewController: UIViewController {
         loadingViewController?.completionHandler = { data in
             self.weatherCurrentArray = data.currentWeatherDataList
             self.weatherForecastArray = data.forecastWeatherDataList
-            self.location = data.location
             self.weatherCollectionView.reloadData()
             self.setBackground()
         }
@@ -142,7 +119,8 @@ class MainViewController: UIViewController {
     func dateStringTransfer(timeStamp: Double, formatterType: String) -> String {
 
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(identifier: timeZone)
+//        dateFormatter.timeZone = TimeZone(identifier: timeZone)
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: weatherCurrentArray?.timezone ?? 0)
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
         switch formatterType {
@@ -177,31 +155,5 @@ extension MainViewController: UICollectionViewDataSource {
         cell.weatherImage.image = UIImage(named: "storm")
         
         return cell
-    }
-    
-    func dateTimeFilter(array: ForecastWeatherDataList) -> ForecastWeatherDataList {
-        var array = array
-        let currentTimeStamp: Double = getTimeIntervalByTimeZone(timeZoneId: timeZone)
-        var forecastTimeStamp: Double = Double(array.list[0].dt)
-        guard currentTimeStamp > forecastTimeStamp else { return array}
-        for _ in 0..<array.list.count {
-            array.list.remove(at: 0)
-            forecastTimeStamp = Double(array.list[0].dt)
-            if forecastTimeStamp > currentTimeStamp {
-                break
-            }
-        }
-        return array
-    }
-    
-    func getTimeIntervalByTimeZone(timeZoneId: String) -> Double {
-        let timezone = TimeZone(identifier: "America/New_York")!
-        let seconds = TimeInterval(timezone.secondsFromGMT(for: Date()))
-        //拿到該時區當下日期與時間
-        let date = Date(timeInterval: seconds, since: Date())
-        //轉換成 Time Interval
-        let timeInterval = TimeInterval(date.timeIntervalSince1970)
-
-        return timeInterval
     }
 }

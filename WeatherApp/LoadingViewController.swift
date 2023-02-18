@@ -14,7 +14,6 @@ enum AnimationType: String {
 }
 
 struct WeatherInformationPack {
-    var location: LocationIdentifiers
     var currentWeatherDataList: CurrentWeatherDataList
     var forecastWeatherDataList: ForecastWeatherDataList
 }
@@ -53,24 +52,16 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         var forecastWeatherDataList: ForecastWeatherDataList?
         
         var userInputText: String = searchTextField.text!
-        //拿時區
-        userInputText = userInputText.replacingOccurrences(of: " ", with: "").uppercased()
-        let index = Locations.locations.firstIndex(where: {$0.key == userInputText})
         
         startAnimation(type: .loading)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            guard let index = index else {
-                self.startAnimation(type: .noResult)
-                return }
-            let location = Locations.locations[index]
-        //
             self.networkManager.fetchCurrentWeather(cityName: userInputText) { data in
                 guard let data = data else { return }
                 currentWeatherDataList = data
                 self.networkManager.fetchForecastWeather(cityId: "\(data.id)") { data in
                     guard let data = data else { return }
                     forecastWeatherDataList = data
-                    self.completionHandler?(WeatherInformationPack(location: location.value, currentWeatherDataList: currentWeatherDataList!, forecastWeatherDataList: forecastWeatherDataList!))
+                    self.completionHandler?(WeatherInformationPack(currentWeatherDataList: currentWeatherDataList!, forecastWeatherDataList: forecastWeatherDataList!))
                     self.dismiss(animated: true)
                 }
             }
