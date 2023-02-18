@@ -51,7 +51,7 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         var currentWeatherDataList: CurrentWeatherDataList?
         var forecastWeatherDataList: ForecastWeatherDataList?
         
-        var userInputText: String = searchTextField.text!
+        let userInputText: String = searchTextField.text!
         
         startAnimation(type: .loading)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

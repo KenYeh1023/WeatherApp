@@ -48,7 +48,9 @@ class NetworkManager {
     }
     
     func fetchCurrentWeather(cityName: String, _ completion: @escaping (CurrentWeatherDataList?) -> ()) {
-        guard let url: URL = URL(string: getUrlAddress(searchType: .currentWeather, cityId: cityName)) else { return }
+        let urlString: String = getUrlAddress(searchType: .currentWeather, cityId: cityName)
+        //因輸入城市名可能有空白, 須額外處理 URL
+        guard let url: URL = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
         request(url: url) { data in
             if let data = data{
                 guard let currentWeatherData: CurrentWeatherDataList = ParseJson.currentWeather(data: data) else {
