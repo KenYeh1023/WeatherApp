@@ -17,6 +17,7 @@
 		BEB82B35299F339100AC5A2F /* noResult.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB82B34299F339100AC5A2F /* noResult.json */; };
 		BEB82B37299F34ED00AC5A2F /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = BEB82B36299F34ED00AC5A2F /* loading.json */; };
 		BEB82B3929A0742D00AC5A2F /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB82B3829A0742D00AC5A2F /* String.swift */; };
+		BEB82B3C29A0B62F00AC5A2F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = BEB82B3B29A0B62F00AC5A2F /* SDWebImage */; };
 		BED55FC2298A192B00015D19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC1298A192B00015D19 /* AppDelegate.swift */; };
 		BED55FC4298A192B00015D19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC3298A192B00015D19 /* SceneDelegate.swift */; };
 		BED55FC6298A192B00015D19 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED55FC5298A192B00015D19 /* MainViewController.swift */; };
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB82B3C29A0B62F00AC5A2F /* SDWebImage in Frameworks */,
 				BEB82B28299203DB00AC5A2F /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +214,7 @@
 			name = WeatherApp;
 			packageProductDependencies = (
 				BEB82B27299203DB00AC5A2F /* Lottie */,
+				BEB82B3B29A0B62F00AC5A2F /* SDWebImage */,
 			);
 			productName = WeatherApp;
 			productReference = BED55FBE298A192B00015D19 /* WeatherApp.app */;
@@ -287,6 +290,7 @@
 			mainGroup = BED55FB5298A192B00015D19;
 			packageReferences = (
 				BEB82B26299203DB00AC5A2F /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				BEB82B3A29A0B62F00AC5A2F /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = BED55FBF298A192B00015D19 /* Products */;
 			projectDirPath = "";
@@ -696,6 +700,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		BEB82B3A29A0B62F00AC5A2F /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -703,6 +715,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BEB82B26299203DB00AC5A2F /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		BEB82B3B29A0B62F00AC5A2F /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEB82B3A29A0B62F00AC5A2F /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
