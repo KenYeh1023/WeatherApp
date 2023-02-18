@@ -76,6 +76,9 @@ class MainViewController: UIViewController {
     }
     
     func setBackground() {
+        UIView.animate(withDuration: 0.5, animations: {
+             self.weatherCollectionView.contentOffset.x = 0
+        })
         currentDateLabel.text = dateStringTransfer(timeStamp: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
         ISOButton.setTitle(weatherCurrentArray?.sys.country, for: .normal)
         locationButton.setTitle((weatherCurrentArray?.name ?? "") + "  ", for: .normal)
