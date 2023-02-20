@@ -28,32 +28,32 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gm-gc-c0j">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="509"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="zEL-RN-euY">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="daytime" translatesAutoresizingMaskIntoConstraints="NO" id="zEL-RN-euY">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="509"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03 Febuary, Friday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVl-JZ-gKc">
-                                        <rect key="frame" x="8" y="60" width="377" height="40"/>
+                                        <rect key="frame" x="8" y="45" width="377" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="UkN-rM-wv1"/>
+                                            <constraint firstAttribute="height" constant="25" id="UkN-rM-wv1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13°C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Uc-d6-h3s">
-                                        <rect key="frame" x="270" y="108" width="115" height="60"/>
+                                        <rect key="frame" x="270" y="220" width="115" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="115" id="aAk-xQ-gqB"/>
                                             <constraint firstAttribute="height" constant="60" id="gRI-vV-Lg9"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Gilroy-Black" family="Gilroy" pointSize="50"/>
-                                        <color key="textColor" systemColor="systemGray6Color"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="shadowOffset" width="0.0" height="2"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Feel 9°C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlJ-BQ-G8N">
-                                        <rect key="frame" x="270" y="173" width="115" height="20"/>
+                                        <rect key="frame" x="270" y="285" width="115" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="115" id="ZaG-92-TDT"/>
                                             <constraint firstAttribute="height" constant="20" id="sAJ-cT-0lA"/>
@@ -98,7 +98,7 @@
                                     <constraint firstAttribute="trailing" secondItem="NVl-JZ-gKc" secondAttribute="trailing" constant="8" id="9Ic-SK-q4s"/>
                                     <constraint firstItem="zEL-RN-euY" firstAttribute="top" secondItem="6gm-gc-c0j" secondAttribute="top" id="Fek-JT-tiK"/>
                                     <constraint firstAttribute="trailing" secondItem="zEL-RN-euY" secondAttribute="trailing" id="Hef-yy-21p"/>
-                                    <constraint firstItem="7Uc-d6-h3s" firstAttribute="top" secondItem="NVl-JZ-gKc" secondAttribute="bottom" constant="8" id="P5D-Da-ic4"/>
+                                    <constraint firstItem="7Uc-d6-h3s" firstAttribute="top" secondItem="NVl-JZ-gKc" secondAttribute="bottom" constant="150" id="P5D-Da-ic4"/>
                                     <constraint firstAttribute="trailing" secondItem="MRt-JN-Hlm" secondAttribute="trailing" id="QMw-he-OeE"/>
                                     <constraint firstAttribute="trailing" secondItem="DlJ-BQ-G8N" secondAttribute="trailing" constant="8" id="TLc-7V-T0u"/>
                                     <constraint firstAttribute="bottom" secondItem="MRt-JN-Hlm" secondAttribute="bottom" constant="8" id="VYT-DC-e0n"/>
@@ -108,7 +108,7 @@
                                     <constraint firstItem="NVl-JZ-gKc" firstAttribute="leading" secondItem="6gm-gc-c0j" secondAttribute="leading" constant="8" id="beq-gS-XZc"/>
                                     <constraint firstAttribute="bottom" secondItem="zEL-RN-euY" secondAttribute="bottom" id="dyU-cO-NRh"/>
                                     <constraint firstAttribute="trailing" secondItem="7Uc-d6-h3s" secondAttribute="trailing" constant="8" id="ngG-TE-Rk6"/>
-                                    <constraint firstItem="NVl-JZ-gKc" firstAttribute="top" secondItem="6gm-gc-c0j" secondAttribute="top" constant="60" id="xn5-3H-OGp"/>
+                                    <constraint firstItem="NVl-JZ-gKc" firstAttribute="top" secondItem="6gm-gc-c0j" secondAttribute="top" constant="45" id="xn5-3H-OGp"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FNk-yJ-Jyi">
@@ -424,7 +424,7 @@
     </scenes>
     <resources>
         <image name="arrow.up.right" catalog="system" width="128" height="112"/>
-        <image name="background" width="459" height="459"/>
+        <image name="daytime" width="940" height="940"/>
         <image name="humidity" width="512" height="512"/>
         <image name="location" width="512" height="512"/>
         <image name="location" catalog="system" width="128" height="121"/>
@@ -441,9 +441,6 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

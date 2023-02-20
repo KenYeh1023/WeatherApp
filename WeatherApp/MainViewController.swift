@@ -86,7 +86,7 @@ class MainViewController: UIViewController {
         ISOButton.setTitle(weatherCurrentArray?.sys.country, for: .normal)
         locationButton.setTitle((weatherCurrentArray?.name ?? "") + "  ", for: .normal)
         currentTemperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
-        currentTemperatureLabel.textColor = .systemGray6
+        currentTemperatureLabel.textColor = .white
         realFeelTemperatureLabel.text = "Real Feel \(Int(weatherCurrentArray!.main.feels_like))°C"
         //風速顯示為小數點後一位
         windLabel.text = String(format: "%.1f", weatherCurrentArray!.wind.speed) + " m/s"
