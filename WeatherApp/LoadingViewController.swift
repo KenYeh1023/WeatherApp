@@ -22,6 +22,7 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchView: UIView!
     @IBAction func searchButtonPressed(_ sender: UIButton) {
+        self.view.endEditing(true)
         fetchWeatherInfo()
     }
     
@@ -73,7 +74,7 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     func setBackground() {
         searchTextField = self.view.viewWithTag(999) as! UITextField
         searchTextField.delegate = self
-        searchTextField.placeholder = "City Name"
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "City Name", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         let gesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapGesture(_:)))
         backgroundView.addGestureRecognizer(gesture)
         
@@ -138,5 +139,12 @@ extension LoadingViewController {
         let countOfWords = string.count + textField.text!.count - range.length
         guard countOfWords < 20 else { return false }
         return string.containsValidCharacter
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.view.endEditing(true)
+        fetchWeatherInfo()
+        return true
     }
 }
