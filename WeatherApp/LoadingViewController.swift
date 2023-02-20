@@ -83,6 +83,7 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         searchButton.imageView?.image = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
         searchButton.layer.cornerRadius = 20
         searchButton.backgroundColor = UIColor(hexString: "#e2f6fd")
+        searchButton.layer.opacity = 0.65
         
         searchButton.tintColor = .black
         searchView.layer.cornerRadius = 20
