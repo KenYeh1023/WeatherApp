@@ -56,7 +56,7 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         userInputText = removeAdditionalSpaceInString(userInputText)
         
         startAnimation(type: .loading)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.networkManager.fetchCurrentWeather(cityName: userInputText) { data in
                 guard let data = data else { self.startAnimation(type: .noResult)
                     return }
