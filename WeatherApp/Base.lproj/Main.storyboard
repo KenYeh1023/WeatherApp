@@ -361,7 +361,7 @@
                                 <rect key="frame" x="16" y="125" width="361" height="61"/>
                                 <subviews>
                                     <textField opaque="NO" tag="999" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LNu-ag-jdh">
-                                        <rect key="frame" x="59" y="13" width="234" height="34"/>
+                                        <rect key="frame" x="59.000000000000014" y="13" width="224.33333333333337" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="0.80246274834437081" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="YPI-m2-UGv"/>
@@ -377,10 +377,9 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4F-r6-Qfg">
-                                        <rect key="frame" x="306" y="10" width="40" height="40"/>
+                                        <rect key="frame" x="296.33333333333331" y="10" width="49.666666666666686" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="0.80453228476821192" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="MsA-9D-w6A"/>
                                             <constraint firstAttribute="height" constant="40" id="PtV-PL-zbb"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
@@ -407,9 +406,6 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.79703021523178808" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9kM-Ph-viZ" firstAttribute="top" secondItem="tD6-sJ-0pk" secondAttribute="top" constant="66" id="6d9-pF-JDM"/>
-                            <constraint firstItem="9kM-Ph-viZ" firstAttribute="top" secondItem="tD6-sJ-0pk" secondAttribute="top" constant="66" id="CKe-lY-Qig"/>
-                            <constraint firstItem="tD6-sJ-0pk" firstAttribute="bottom" secondItem="9kM-Ph-viZ" secondAttribute="bottom" constant="632" id="WzF-pZ-fry"/>
-                            <constraint firstItem="9kM-Ph-viZ" firstAttribute="leading" secondItem="pR0-jX-YDh" secondAttribute="leadingMargin" id="eIO-Y2-7m0"/>
                             <constraint firstItem="9kM-Ph-viZ" firstAttribute="leading" secondItem="tD6-sJ-0pk" secondAttribute="leading" constant="16" id="edK-gz-HEJ"/>
                             <constraint firstItem="tD6-sJ-0pk" firstAttribute="trailing" secondItem="9kM-Ph-viZ" secondAttribute="trailing" constant="16" id="l9h-9L-QQN"/>
                         </constraints>

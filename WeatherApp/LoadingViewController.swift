@@ -52,7 +52,8 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         var currentWeatherDataList: CurrentWeatherDataList?
         var forecastWeatherDataList: ForecastWeatherDataList?
         
-        let userInputText: String = searchTextField.text!
+        var userInputText: String = searchTextField.text!
+        userInputText = removeAdditionalSpaceInString(userInputText)
         
         startAnimation(type: .loading)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -68,6 +69,21 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
                     self.dismiss(animated: true)
                 }
             }
+        }
+        
+        func removeAdditionalSpaceInString(_ string: String) -> String {
+            var result = ""
+            let stringArray: [String] = string.components(separatedBy: " ")
+            guard stringArray.count > 1 else { return string }
+            result = stringArray[0]
+            for i in 1..<stringArray.count {
+                if stringArray[i] == "" {
+                    continue
+                } else {
+                    result += " " + stringArray[i]
+                }
+            }
+            return result
         }
     }
     
