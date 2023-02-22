@@ -95,7 +95,7 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         backgroundView.addGestureRecognizer(gesture)
         
         locationImageView.image = UIImage(named: "location")?.withRenderingMode(.alwaysTemplate)
-        locationImageView.tintColor = UIColor(hexString: "#0b233d")
+        locationImageView.tintColor = .lightGray
         
         searchButton.imageView?.image = UIImage(systemName: "magnifyingglass")?.withRenderingMode(.alwaysTemplate)
         searchButton.layer.cornerRadius = 20
