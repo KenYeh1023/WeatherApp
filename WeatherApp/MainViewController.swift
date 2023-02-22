@@ -45,6 +45,10 @@ class MainViewController: UIViewController {
     
     var weatherCurrentArray: CurrentWeatherDataList?
     var weatherForecastArray: ForecastWeatherDataList?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.animateCollection()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +75,7 @@ class MainViewController: UIViewController {
         loadingViewController?.completionHandler = { data in
             self.weatherCurrentArray = data.currentWeatherDataList
             self.weatherForecastArray = data.forecastWeatherDataList
-            self.weatherCollectionView.reloadData()
+            self.animateCollection()
             self.setBackground()
         }
         present(loadingViewController!, animated: true)
@@ -79,9 +83,6 @@ class MainViewController: UIViewController {
     
     func setBackground() {
         backgroundImage.image = checkDayOrNight()
-        UIView.animate(withDuration: 0.5, animations: {
-             self.weatherCollectionView.contentOffset.x = 0
-        })
         currentDateLabel.text = dateStringTransfer(GMTSecs: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
         ISOButton.setTitle(weatherCurrentArray?.sys.country, for: .normal)
         locationButton.setTitle((weatherCurrentArray?.name ?? "") + "  ", for: .normal)
@@ -154,6 +155,26 @@ class MainViewController: UIViewController {
             return UIImage(named: "nighttime")!
         }
         return UIImage(named: "daytime")!
+    }
+    
+    func animateCollection() {
+        weatherCollectionView.contentOffset.x = 0
+        weatherCollectionView.reloadData()
+        //與 table view 不同, collection view 需要先呼叫 layoutSubviews() 或是 layoutIfNeeded() 才能正確獲取 visibleCells
+        weatherCollectionView.layoutSubviews()
+        let cells = weatherCollectionView.visibleCells
+        let collectionWidth = weatherCollectionView.bounds.size.width
+        for cell in cells {
+            cell.transform = CGAffineTransform(translationX: collectionWidth, y: 0)
+        }
+        
+        var index = 0
+        for cell in cells {
+            UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0) {
+                cell.transform = CGAffineTransform(translationX: 0, y: 0)
+                index += 1
+            }
+        }
     }
 }
 
