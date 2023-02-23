@@ -43,8 +43,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var humidityImageView: UIImageView!
     @IBOutlet weak var locationButton: UIButton!
     
-    var weatherCurrentArray: CurrentWeatherDataList?
-    var weatherForecastArray: ForecastWeatherDataList?
+    var weatherData: WeatherData?
     
     override func viewWillAppear(_ animated: Bool) {
         self.animateCollection()
@@ -73,8 +72,7 @@ class MainViewController: UIViewController {
         loadingViewController?.modalTransitionStyle = .crossDissolve
         loadingViewController?.modalPresentationStyle = .overCurrentContext
         loadingViewController?.completionHandler = { data in
-            self.weatherCurrentArray = data.currentWeatherDataList
-            self.weatherForecastArray = data.forecastWeatherDataList
+            self.weatherData = WeatherData(currentWeatherData: data.currentWeatherDataList, forecastWeatherData: data.forecastWeatherDataList)
             self.animateCollection()
             self.setBackground()
         }
@@ -84,15 +82,15 @@ class MainViewController: UIViewController {
     func setBackground() {
         backgroundImage.image = checkDayOrNight()
         currentDateLabel.text = dateStringTransfer(GMTSecs: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
-        ISOButton.setTitle(weatherCurrentArray?.sys.country, for: .normal)
-        locationButton.setTitle((weatherCurrentArray?.name ?? "") + "  ", for: .normal)
-        currentTemperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
+        ISOButton.setTitle(weatherData?.currentWeatherData.sys.country, for: .normal)
+        locationButton.setTitle((weatherData?.currentWeatherData.name ?? "") + "  ", for: .normal)
+        currentTemperatureLabel.text = "\(Int(weatherData!.currentWeatherData.main.temp))°C"
         currentTemperatureLabel.textColor = .white
-        realFeelTemperatureLabel.text = "Real Feel \(Int(weatherCurrentArray!.main.feels_like))°C"
+        realFeelTemperatureLabel.text = "Real Feel \(Int(weatherData!.currentWeatherData.main.feels_like))°C"
         //風速顯示為小數點後一位
-        windLabel.text = String(format: "%.1f", weatherCurrentArray!.wind.speed) + " m/s"
-        pressureLabel.text = "\(weatherCurrentArray!.main.pressure) hPa"
-        humidityLabel.text = "\(weatherCurrentArray!.main.humidity) %"
+        windLabel.text = String(format: "%.1f", weatherData!.currentWeatherData.wind.speed) + " m/s"
+        pressureLabel.text = "\(weatherData!.currentWeatherData.main.pressure) hPa"
+        humidityLabel.text = "\(weatherData!.currentWeatherData.main.humidity) %"
         
         weatherCollectionView.backgroundColor = UIColor.init(hexString: "#222A36")
         weatherCollectionView.layer.cornerRadius = 30
@@ -130,7 +128,7 @@ class MainViewController: UIViewController {
     func dateStringTransfer(GMTSecs: Double, formatterType: String) -> String {
 
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: weatherCurrentArray?.timezone ?? 0)
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: weatherData?.currentWeatherData.timezone ?? 0)
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
         switch formatterType {
@@ -149,8 +147,8 @@ class MainViewController: UIViewController {
     
     func checkDayOrNight() -> UIImage {
         let currentTimeInterval = Int(Date().timeIntervalSince1970)
-        let sunriseTime = weatherCurrentArray?.sys.sunrise ?? 0
-        let sunsetTime = weatherCurrentArray?.sys.sunset ?? 0
+        let sunriseTime = weatherData?.currentWeatherData.sys.sunrise ?? 0
+        let sunsetTime = weatherData?.currentWeatherData.sys.sunset ?? 0
         guard currentTimeInterval >= sunriseTime && currentTimeInterval < sunsetTime else {
             return UIImage(named: "nighttime")!
         }
@@ -185,16 +183,16 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(WeatherCollectionViewCell.self)", for: indexPath) as! WeatherCollectionViewCell
-        let currentIconUrlString: String = "https://openweathermap.org/img/wn/\(weatherCurrentArray?.weather[0].icon ?? "01d")@2x.png"
-        let forecastIconUrlString: String = "https://openweathermap.org/img/wn/\(weatherForecastArray?.list[0].weather[0].icon ?? "01d")@2x.png"
+        let currentIconUrlString: String = "https://openweathermap.org/img/wn/\(weatherData?.currentWeatherData.weather[0].icon ?? "01d")@2x.png"
+        let forecastIconUrlString: String = "https://openweathermap.org/img/wn/\(weatherData?.forecastWeatherData.list[0].weather[0].icon ?? "01d")@2x.png"
 
         if indexPath.row == 0 {
             cell.timeLabel.text = "NOW"
-            cell.temperatureLabel.text = "\(Int(weatherCurrentArray!.main.temp))°C"
+            cell.temperatureLabel.text = "\(Int(weatherData!.currentWeatherData.main.temp))°C"
             cell.weatherImage.sd_setImage(with: URL(string: currentIconUrlString))
         } else {
-            cell.timeLabel.text = dateStringTransfer(GMTSecs: Double(weatherForecastArray?.list[indexPath.row - 1].dt ?? 0), formatterType: "forecast")
-            cell.temperatureLabel.text = "\(Int(weatherForecastArray!.list[indexPath.row - 1].main.temp))°C"
+            cell.timeLabel.text = dateStringTransfer(GMTSecs: Double(weatherData?.forecastWeatherData.list[indexPath.row - 1].dt ?? 0), formatterType: "forecast")
+            cell.temperatureLabel.text = "\(Int(weatherData!.forecastWeatherData.list[indexPath.row - 1].main.temp))°C"
             cell.weatherImage.sd_setImage(with: URL(string: forecastIconUrlString))
         }
         return cell
