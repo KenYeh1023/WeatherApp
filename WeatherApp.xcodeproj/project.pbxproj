@@ -102,6 +102,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE640FF729A7002D0073F35F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BED55FC7298A192B00015D19 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BE640FF829A700420073F35F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BED55FC5298A192B00015D19 /* MainViewController.swift */,
+				BEB82B222991E65800AC5A2F /* LoadingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		BEA42B53298CE9D8009127A4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,13 +128,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		BEB82B2D2995F46000AC5A2F /* Codable */ = {
+		BEB82B2D2995F46000AC5A2F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				BED55FF3298A626300015D19 /* CurrentWeatherDataList.swift */,
 				BEB82B2E2995F49600AC5A2F /* ForecastWeatherDataList.swift */,
 			);
-			path = Codable;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BEB82B322995FB3700AC5A2F /* Fonts */ = {
@@ -140,11 +157,13 @@
 		BED55FB5298A192B00015D19 = {
 			isa = PBXGroup;
 			children = (
+				BED55FC0298A192B00015D19 /* WeatherApp */,
 				BEB82B322995FB3700AC5A2F /* Fonts */,
 				BEB82B332995FB4700AC5A2F /* Animations */,
-				BEB82B2D2995F46000AC5A2F /* Codable */,
 				BEA42B53298CE9D8009127A4 /* Extensions */,
-				BED55FC0298A192B00015D19 /* WeatherApp */,
+				BEB82B2D2995F46000AC5A2F /* Model */,
+				BE640FF729A7002D0073F35F /* View */,
+				BE640FF829A700420073F35F /* Controller */,
 				BED55FD7298A192C00015D19 /* WeatherAppTests */,
 				BED55FE1298A192C00015D19 /* WeatherAppUITests */,
 				BED55FBF298A192B00015D19 /* Products */,
@@ -166,12 +185,9 @@
 			children = (
 				BED55FC1298A192B00015D19 /* AppDelegate.swift */,
 				BED55FC3298A192B00015D19 /* SceneDelegate.swift */,
-				BED55FC5298A192B00015D19 /* MainViewController.swift */,
-				BEB82B222991E65800AC5A2F /* LoadingViewController.swift */,
 				BED55FF1298A547B00015D19 /* NetworkManager.swift */,
 				BEB82B302995FA2F00AC5A2F /* ParseJson.swift */,
 				BEB82B20298E63E900AC5A2F /* WeatherCollectionViewCell.swift */,
-				BED55FC7298A192B00015D19 /* Main.storyboard */,
 				BED55FCA298A192C00015D19 /* Assets.xcassets */,
 				BED55FCC298A192C00015D19 /* LaunchScreen.storyboard */,
 				BED55FCF298A192C00015D19 /* Info.plist */,
