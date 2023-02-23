@@ -44,7 +44,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var locationButton: UIButton!
     
     var weatherBrain: WeatherBrain?
-//    var weatherData: WeatherData?
     
     override func viewWillAppear(_ animated: Bool) {
         self.animateCollection()
@@ -81,8 +80,8 @@ class MainViewController: UIViewController {
     }
     
     func setBackground() {
-        backgroundImage.image = checkDayOrNight()
-        currentDateLabel.text = dateStringTransfer(GMTSecs: TimeInterval(NSDate().timeIntervalSince1970), formatterType: "current")
+        backgroundImage.image = weatherBrain?.returnBackgroundImage()
+        currentDateLabel.text = weatherBrain?.dateStringTransfer(GMTSecs: TimeInterval(NSDate().timeIntervalSince1970), formatter: "dd LLLL, EEEE")
         ISOButton.setTitle(weatherBrain?.weatherData.currentWeatherData.sys.country, for: .normal)
         locationButton.setTitle((weatherBrain?.weatherData.currentWeatherData.name ?? "") + "  ", for: .normal)
         currentTemperatureLabel.text = "\(Int(weatherBrain!.weatherData.currentWeatherData.main.temp))°C"
@@ -125,37 +124,7 @@ class MainViewController: UIViewController {
         humidityImageView.image = humidityImage
         humidityImageView.tintColor = .white
     }
-    
-    func dateStringTransfer(GMTSecs: Double, formatterType: String) -> String {
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: weatherBrain?.weatherData.currentWeatherData.timezone ?? 0)
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-        switch formatterType {
-        case "current":
-            dateFormatter.dateFormat = "dd LLLL, EEEE"
-        case "forecast":
-            dateFormatter.amSymbol = "AM"
-            dateFormatter.pmSymbol = "PM"
-            dateFormatter.dateFormat = "h a"
-        default: break
-        }
-        let time = Date(timeIntervalSince1970: GMTSecs)
-        let dateString = dateFormatter.string(from: time)
-        return dateString
-    }
-    
-    func checkDayOrNight() -> UIImage {
-        let currentTimeInterval = Int(Date().timeIntervalSince1970)
-        let sunriseTime = weatherBrain?.weatherData.currentWeatherData.sys.sunrise ?? 0
-        let sunsetTime = weatherBrain?.weatherData.currentWeatherData.sys.sunset ?? 0
-        guard currentTimeInterval >= sunriseTime && currentTimeInterval < sunsetTime else {
-            return UIImage(named: "nighttime")!
-        }
-        return UIImage(named: "daytime")!
-    }
-    
     func animateCollection() {
         weatherCollectionView.contentOffset.x = 0
         weatherCollectionView.reloadData()
@@ -184,15 +153,16 @@ extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(WeatherCollectionViewCell.self)", for: indexPath) as! WeatherCollectionViewCell
-        let currentIconUrlString: String = "https://openweathermap.org/img/wn/\(weatherBrain?.weatherData.currentWeatherData.weather[0].icon ?? "01d")@2x.png"
-        let forecastIconUrlString: String = "https://openweathermap.org/img/wn/\(weatherBrain?.weatherData.forecastWeatherData.list[0].weather[0].icon ?? "01d")@2x.png"
-
+        
+        let currentIconUrlString: String = weatherBrain!.getWeatherIconUrl(iconCode: weatherBrain!.weatherData.currentWeatherData.weather[0].icon)
+        let forecastIconUrlString: String = weatherBrain!.getWeatherIconUrl(iconCode: weatherBrain!.weatherData.forecastWeatherData.list[0].weather[0].icon)
+        
         if indexPath.row == 0 {
             cell.timeLabel.text = "NOW"
             cell.temperatureLabel.text = "\(Int(weatherBrain!.weatherData.currentWeatherData.main.temp))°C"
             cell.weatherImage.sd_setImage(with: URL(string: currentIconUrlString))
         } else {
-            cell.timeLabel.text = dateStringTransfer(GMTSecs: Double(weatherBrain?.weatherData.forecastWeatherData.list[indexPath.row - 1].dt ?? 0), formatterType: "forecast")
+            cell.timeLabel.text = weatherBrain?.dateStringTransfer(GMTSecs: Double(weatherBrain?.weatherData.forecastWeatherData.list[indexPath.row - 1].dt ?? 0), formatter: "h a")
             cell.temperatureLabel.text = "\(Int(weatherBrain!.weatherData.forecastWeatherData.list[indexPath.row - 1].main.temp))°C"
             cell.weatherImage.sd_setImage(with: URL(string: forecastIconUrlString))
         }
