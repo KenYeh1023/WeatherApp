@@ -25,22 +25,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windScene: UIWindowScene = (scene as? UIWindowScene) else { return }
         
-        var currentWeatherDataList: CurrentWeatherDataList?
-        var forecastWeatherDataList: ForecastWeatherDataList?
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
         
-        networkManager.fetchCurrentWeather(cityName: "Taipei") { data in
-            guard let data = data else { return }
-            currentWeatherDataList = data
-            self.networkManager.fetchForecastWeather(cityId: "\(data.id)") { data in
-                guard let data = data else { return }
-                forecastWeatherDataList = data
-                
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-                viewController.weatherBrain = WeatherBrain(weatherData: WeatherData(currentWeatherData: currentWeatherDataList!, forecastWeatherData: forecastWeatherDataList!))
-                self.enterInitialView(windScene: windScene, initView: viewController)
-            }
+        networkManager.fetchWeatherData(cityName: "Taipei") { data in
+            guard data != nil else { return }
+            viewController.weatherBrain = WeatherBrain(weatherData: data!)
+            self.enterInitialView(windScene: windScene, initView: viewController)
         }
+        
+//        var currentWeatherDataList: CurrentWeatherDataList?
+//        var forecastWeatherDataList: ForecastWeatherDataList?
+//
+//        networkManager.fetchCurrentWeather(cityName: "Taipei") { data in
+//            guard let data = data else { return }
+//            currentWeatherDataList = data
+//            self.networkManager.fetchForecastWeather(cityId: "\(data.id)") { data in
+//                guard let data = data else { return }
+//                forecastWeatherDataList = data
+//
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+//                viewController.weatherBrain = WeatherBrain(weatherData: WeatherData(currentWeatherData: currentWeatherDataList!, forecastWeatherData: forecastWeatherDataList!))
+//                self.enterInitialView(windScene: windScene, initView: viewController)
+//            }
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

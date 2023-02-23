@@ -74,4 +74,23 @@ class NetworkManager {
             }
         }
     }
+    
+    func fetchWeatherData(cityName: String,_ completion: @escaping (WeatherData?) -> ()) {
+        
+        var weatherData: WeatherData?
+        
+        var currentWeatherData: CurrentWeatherDataList?
+        var forecastWeatherData: ForecastWeatherDataList?
+        
+        fetchCurrentWeather(cityName: cityName) { data in
+            guard let data = data else { return }
+            currentWeatherData = data
+            self.fetchForecastWeather(cityId: "\(data.id)") { data in
+                guard let data = data else { return }
+                forecastWeatherData = data
+                weatherData = WeatherData(currentWeatherData: currentWeatherData!, forecastWeatherData: forecastWeatherData!)
+                completion(weatherData)
+            }
+        }
+    }
 }
