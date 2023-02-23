@@ -37,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-                viewController.weatherData = WeatherData(currentWeatherData: currentWeatherDataList!, forecastWeatherData: forecastWeatherDataList!)
+                viewController.weatherBrain = WeatherBrain(weatherData: WeatherData(currentWeatherData: currentWeatherDataList!, forecastWeatherData: forecastWeatherDataList!))
                 self.enterInitialView(windScene: windScene, initView: viewController)
             }
         }

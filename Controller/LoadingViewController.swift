@@ -13,11 +13,6 @@ enum AnimationType: String {
     case loading = "loading"
 }
 
-struct WeatherInformationPack {
-    var currentWeatherDataList: CurrentWeatherDataList
-    var forecastWeatherDataList: ForecastWeatherDataList
-}
-
 class LoadingViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchView: UIView!
@@ -39,7 +34,7 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     
     var searchTextField: UITextField = UITextField()
     
-    var completionHandler: ((WeatherInformationPack)->())?
+    var completionHandler: ((WeatherBrain)->())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +60,7 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
                     guard let data = data else { self.startAnimation(type: .noResult)
                         return }
                     forecastWeatherDataList = data
-                    self.completionHandler?(WeatherInformationPack(currentWeatherDataList: currentWeatherDataList!, forecastWeatherDataList: forecastWeatherDataList!))
+                    self.completionHandler?(WeatherBrain(weatherData: WeatherData(currentWeatherData: currentWeatherDataList!, forecastWeatherData: forecastWeatherDataList!)))
                     self.dismiss(animated: true)
                 }
             }
