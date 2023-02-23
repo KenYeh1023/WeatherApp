@@ -44,25 +44,18 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
     func fetchWeatherInfo() {
         guard searchTextField.text != nil || searchTextField.text != "" else { return }
         
-        var currentWeatherDataList: CurrentWeatherDataList?
-        var forecastWeatherDataList: ForecastWeatherDataList?
-        
         var userInputText: String = searchTextField.text!
         userInputText = removeAdditionalSpaceInString(userInputText)
         
         startAnimation(type: .loading)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.networkManager.fetchCurrentWeather(cityName: userInputText) { data in
-                guard let data = data else { self.startAnimation(type: .noResult)
-                    return }
-                currentWeatherDataList = data
-                self.networkManager.fetchForecastWeather(cityId: "\(data.id)") { data in
-                    guard let data = data else { self.startAnimation(type: .noResult)
-                        return }
-                    forecastWeatherDataList = data
-                    self.completionHandler?(WeatherBrain(weatherData: WeatherData(currentWeatherData: currentWeatherDataList!, forecastWeatherData: forecastWeatherDataList!)))
-                    self.dismiss(animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.networkManager.fetchWeatherData(cityName: userInputText) { data in
+                guard data != nil else {
+                    self.startAnimation(type: .noResult)
+                    return
                 }
+                self.completionHandler?(WeatherBrain(weatherData: data!))
+                self.dismiss(animated: true)
             }
         }
         
@@ -131,7 +124,6 @@ class LoadingViewController: UIViewController, UITextFieldDelegate {
         animationView?.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         //put it third
         animationView?.translatesAutoresizingMaskIntoConstraints = false
-
         
         animationView!.contentMode = .scaleAspectFit
         animationView?.loopMode = .loop

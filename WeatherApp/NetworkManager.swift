@@ -83,10 +83,14 @@ class NetworkManager {
         var forecastWeatherData: ForecastWeatherDataList?
         
         fetchCurrentWeather(cityName: cityName) { data in
-            guard let data = data else { return }
+            guard let data = data else {
+                completion(nil)
+                return }
             currentWeatherData = data
             self.fetchForecastWeather(cityId: "\(data.id)") { data in
-                guard let data = data else { return }
+                guard let data = data else {
+                    completion(nil)
+                    return }
                 forecastWeatherData = data
                 weatherData = WeatherData(currentWeatherData: currentWeatherData!, forecastWeatherData: forecastWeatherData!)
                 completion(weatherData)
