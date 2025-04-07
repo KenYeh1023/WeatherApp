@@ -1,6 +1,6 @@
 # WeatherApp
 
-串接 OpenWeather 的 Weather API 顯示目前選擇的城市天氣資訊。
+串接 OpenWeather 的 Weather API 顯示目前選擇的城市天氣資訊
 
 
 <p align="center">
