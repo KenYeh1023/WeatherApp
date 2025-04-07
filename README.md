@@ -6,3 +6,4 @@ an app to observe weather status through specific areas, only available for Engl
 Please input english city name for searching the specific city weather information.
 
 WebService APIs: https://openweathermap.org/api
+UI Interface Reference: https://dribbble.com/shots/20331883-Concept-Weather
