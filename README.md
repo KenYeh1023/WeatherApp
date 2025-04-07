@@ -1,9 +1,30 @@
 # WeatherApp
-串接 OpenWeather 的 Weather API 顯示目前選擇的城市天氣資訊, 可以顯示目前以及預測接下個幾個小時內的天氣狀況
-可以選擇城市(輸入英文), 顯示目前氣溫、氣候狀況、風速、大氣壓力、濕度，背景圖片會依據目前是白天或晚上切換顯示
 
-an app to observe weather status through specific areas, only available for English.
-Please input english city name for searching the specific city weather information.
+串接 OpenWeather 的 Weather API 顯示目前選擇的城市天氣資訊。
 
-WebService APIs: https://openweathermap.org/api
-UI Interface Reference: https://dribbble.com/shots/20331883-Concept-Weather
+- 顯示目前與預測幾小時內的天氣狀況  
+- 可輸入英文城市名查詢  
+- 顯示項目包括：
+  - 氣溫  
+  - 氣候狀況  
+  - 風速  
+  - 大氣壓力  
+  - 濕度  
+- 背景圖片依白天/夜晚切換顯示
+
+---
+
+**App Description:**
+
+An app to observe weather status through specific areas.  
+Only available for English.  
+Please input English city name to search weather information.
+
+---
+
+**WebService APIs:**  
+🔗 [OpenWeather API](https://openweathermap.org/api)
+
+**UI Interface Reference:**  
+🎨 [Dribbble Weather UI](https://dribbble.com/shots/20331883-Concept-Weather)
+
