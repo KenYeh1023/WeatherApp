@@ -2,6 +2,15 @@
 
 串接 OpenWeather 的 Weather API 顯示目前選擇的城市天氣資訊。
 
+
+<p align="center">
+  <img src="image/screenshot1.png" alt="screenshot1" width="30%" />
+  &nbsp
+  <img src="image/screenshot2.png" alt="screenshot2" width="30%" />
+  &nbsp
+  <img src="image/screenshot3.png" alt="screenshot3" width="30%" />
+</p>
+
 - 顯示目前與預測幾小時內的天氣狀況  
 - 可輸入英文城市名查詢  
 - 顯示項目包括：
